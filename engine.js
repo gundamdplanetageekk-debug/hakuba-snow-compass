@@ -168,6 +168,10 @@
 
   function rankResorts(norm, resorts, lifts, now) {
     const day = targetDay(now);
+    // Live lift status only describes *right now*: use it for today's picks, and only once the valley is running
+    // (at night or before opening every lift reads closed, which would wrongly sink every resort).
+    const valleyRunning = lifts && Object.keys(lifts).some(k => lifts[k] && lifts[k].open > 0);
+    if (day.isTomorrow || !valleyRunning) lifts = null;
     const ranked = [];
     resorts.forEach(r => {
       if (!norm[r.id]) return;

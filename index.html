@@ -47,7 +47,7 @@
   .status { display: flex; justify-content: space-between; gap: 8px; color: var(--ink-3); font-size: 12px; margin: 14px 2px 8px; }
   .status b { color: var(--ink-2); font-weight: 600; }
 
-  .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; min-height: 61px; } /* reserve space: avoids layout shift (CLS) while data loads */
   .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 8px; text-align: center; }
   .stat .v { font-size: 19px; font-weight: 750; font-variant-numeric: tabular-nums; }
   .stat .k { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
@@ -239,8 +239,8 @@
   <!-- RESORT MODE -->
   <section id="resortView">
     <h2 id="picksTitle">Today's Best Picks</h2>
-    <div id="picks"><div class="skeleton"></div><div class="skeleton"></div></div>
-    <div id="rest"></div>
+    <div id="picks"><div class="skeleton" style="height:258px"></div><div class="skeleton" style="height:258px"></div><div class="skeleton" style="height:258px"></div></div>
+    <div id="rest"><div class="skeleton" style="height:384px"></div></div>
 
     <div id="resortCtas"></div>
 

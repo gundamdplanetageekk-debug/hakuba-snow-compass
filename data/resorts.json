@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": "2026-11-27",
-    "note": "Static terrain profile for the scoring algorithm. Elevations from resort/agency listings (Happo 1831/760, Goryu 1676/750, Hakuba47 1614/820, Cortina 1402 top/530 vert, Norikura 1300 top/600 vert). Coordinates are approximate (grid models are 2-11 km) and only need to land in the right model cell. Fields marked confidence:'approx' should be checked on the next data pass.",
+    "note": "Static terrain profile for the scoring algorithm. Elevations from resort/agency listings (Happo 1831/760, Goryu 1676/750, Hakuba47 1614/820, Cortina 1402 top/530 vert, Norikura 1300 top/600 vert). Coordinates are approximate (grid models are 2-11 km) and only need to land in the right model cell. Top/base elevations for all 10 resorts match the Hakuba Valley official resort info page (checked 2026-11-28). confidence:'approx' now refers to coordinates only.",
     "scoring_fields": {
       "snowBias": "Orographic multiplier on model snowfall. North end (Otari) catches more Sea-of-Japan snow; south end (Omachi) gets less but drier snow.",
       "treeLevel": "0-3. In-bounds tree terrain that keeps visibility and shelter in storms.",
@@ -69,7 +69,7 @@
     },
     {
       "id": "norikura", "name": "Hakuba Norikura", "nameJa": "白馬乗鞍", "area": "north",
-      "top": 1300, "base": 700, "fallbackTop": 1300,
+      "top": 1598, "base": 800, "fallbackTop": 1300,
       "coords": { "top": [36.8080, 137.8450], "base": [36.8020, 137.8580] },
       "aspect": "NE", "treeLevel": 2, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 90, "snowBias": 1.25,
       "bcGate": true, "linkedWith": "cortina",
@@ -91,7 +91,7 @@
     },
     {
       "id": "kashimayari", "name": "Kashimayari Snow Resort", "nameJa": "鹿島槍", "area": "south",
-      "top": 1550, "base": 830, "fallbackTop": 1200,
+      "top": 1320, "base": 830, "fallbackTop": 1200,
       "coords": { "top": [36.5730, 137.8150], "base": [36.5800, 137.8300] },
       "aspect": "E", "treeLevel": 1, "windExposure": 3, "upperHoldGust": 60, "fullHoldGust": 85, "snowBias": 0.85,
       "bcGate": false, "linkedWith": null,
@@ -102,7 +102,7 @@
     },
     {
       "id": "jigatake", "name": "Jiigatake Ski Resort", "nameJa": "爺ガ岳", "area": "south",
-      "top": 1200, "base": 740, "fallbackTop": 1200,
+      "top": 1200, "base": 940, "fallbackTop": 1200,
       "coords": { "top": [36.5600, 137.8300], "base": [36.5650, 137.8420] },
       "aspect": "E", "treeLevel": 1, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 90, "snowBias": 0.8,
       "bcGate": false, "linkedWith": null,

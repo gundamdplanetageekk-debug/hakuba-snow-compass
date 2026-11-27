@@ -1,1 +1,104 @@
+# Keeps live data fresh without redeploying the site.
+# Generated JSON goes to the orphan branch `data`; the site reads it from
+# https://raw.githubusercontent.com/<owner>/<repo>/data/<file>.json  (CONFIG.DATA_BASE_URL)
+name: update-data
 
+on:
+  schedule:
+    - cron: "17 * * * *"   # hourly: weather (+ lift status during JST 06:00-17:59)
+    - cron: "40 18 * * *"  # daily 03:40 JST: shuttle timetable watcher
+  workflow_dispatch:
+    inputs:
+      task:
+        description: "weather | lifts | shuttle | all"
+        default: "all"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Decide tasks
+        id: t
+        run: |
+          TASK="${{ github.event.inputs.task || 'auto' }}"
+          HOUR_JST=$(TZ=Asia/Tokyo date +%H)
+          W=false; L=false; S=false
+          if [ "$TASK" = "all" ]; then W=true; L=true; S=true
+          elif [ "$TASK" = "weather" ]; then W=true
+          elif [ "$TASK" = "lifts" ]; then L=true
+          elif [ "$TASK" = "shuttle" ]; then S=true
+          elif [ "${{ github.event.schedule }}" = "40 18 * * *" ]; then S=true
+          else
+            W=true
+            if [ "$HOUR_JST" -ge 6 ] && [ "$HOUR_JST" -le 17 ]; then L=true; fi
+          fi
+          echo "weather=$W" >> "$GITHUB_OUTPUT"; echo "lifts=$L" >> "$GITHUB_OUTPUT"; echo "shuttle=$S" >> "$GITHUB_OUTPUT"
+
+      - name: Check out (or create) the data branch
+        run: |
+          git config --global user.name  "hakuba-data-bot"
+          git config --global user.email "actions@users.noreply.github.com"
+          REMOTE="https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          if git ls-remote --exit-code --heads "$REMOTE" data >/dev/null 2>&1; then
+            git clone --depth 1 --branch data --single-branch "$REMOTE" _data
+          else
+            mkdir _data && cd _data && git init -q -b data && git remote add origin "$REMOTE" && cd ..
+            cp data/shuttle.json _data/
+          fi
+
+      - name: Weather (Open-Meteo)
+        if: steps.t.outputs.weather == 'true'
+        env:
+          OPEN_METEO_API_KEY: ${{ secrets.OPEN_METEO_API_KEY }}
+        run: python scripts/fetch_weather.py --resorts data/resorts.json --out _data/weather.json
+
+      - name: Lift status (hakubavalley.com)
+        if: steps.t.outputs.lifts == 'true'
+        continue-on-error: true   # a site layout change must never block weather updates
+        run: python scripts/update_lifts.py --out _data/lifts.json
+
+      - name: Shuttle timetables
+        if: steps.t.outputs.shuttle == 'true'
+        continue-on-error: true
+        run: |
+          pip install --quiet pdfplumber==0.11.4
+          python scripts/update_shuttle.py --shuttle _data/shuttle.json
+
+      - name: Commit data branch
+        run: |
+          cd _data
+          git add -A
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          # Single-commit branch: always replace history so the repo never bloats with hourly JSON.
+          git checkout -q --orphan snapshot
+          git commit -q -m "data snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q -f origin snapshot:data
+
+      - name: Ask for a quick review when timetables change
+        if: steps.t.outputs.shuttle == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if python -c "import json,sys;sys.exit(0 if json.load(open('_data/shuttle.json'))['_meta'].get('needsReview') else 1)"; then
+            if ! gh issue list --state open --label shuttle-review --json number -q '.[0].number' | grep -q .; then
+              gh label create shuttle-review --color FBBF24 2>/dev/null || true
+              gh issue create --label shuttle-review \
+                --title "Shuttle timetable changed — please review" \
+                --body "New/changed PDFs were detected and parsed into the \`data\` branch (shuttle.json). Spot-check a few departures against the official PDF, then set \`_meta.needsReview\` to false in shuttle.json on the data branch. The app hides auto-parsed departures until then."
+            fi
+          fi

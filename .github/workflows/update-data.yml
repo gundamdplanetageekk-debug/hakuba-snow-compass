@@ -89,6 +89,7 @@ jobs:
         env:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_SITE_TAG: 4c634167b844443b8e16f59e4a4d049e   # Web Analytics site tag (public identifier, not a secret)
         run: python scripts/fetch_analytics.py --out _data
 
       - name: Commit data branch

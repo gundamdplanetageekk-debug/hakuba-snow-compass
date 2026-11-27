@@ -26,9 +26,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -63,6 +63,7 @@ jobs:
 
       - name: Weather (Open-Meteo)
         if: steps.t.outputs.weather == 'true'
+        continue-on-error: true   # a network blip keeps the previous hour's file; the app shows it as "delayed"
         env:
           OPEN_METEO_API_KEY: ${{ secrets.OPEN_METEO_API_KEY }}
         run: python scripts/fetch_weather.py --resorts data/resorts.json --out _data/weather.json

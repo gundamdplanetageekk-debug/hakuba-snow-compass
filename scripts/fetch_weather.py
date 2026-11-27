@@ -36,17 +36,17 @@ def build_url(resorts, api_key=None):
     return f"{host}/v1/forecast?{urllib.parse.urlencode(params)}"
 
 
-def fetch(url, tries=3):
+def fetch(url, tries=4):
     for i in range(tries):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "hakuba-snow-compass/1.0"})
-            with urllib.request.urlopen(req, timeout=30) as resp:
+            with urllib.request.urlopen(req, timeout=60) as resp:
                 return json.load(resp)
         except Exception as exc:  # network blips are common on shared CI runners
             if i == tries - 1:
                 raise
             print(f"retry {i + 1}: {exc}", file=sys.stderr)
-            time.sleep(5 * (i + 1))
+            time.sleep(15 * (i + 1))
 
 
 def main():

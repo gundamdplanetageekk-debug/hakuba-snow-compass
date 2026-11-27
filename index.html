@@ -241,8 +241,8 @@ const CONFIG = {
   LINKS: {
     BC_TOUR_VIATOR:  'https://www.viator.com/searchResults/all?text=hakuba%20backcountry',
     BC_TOUR_GYG:     'https://www.getyourguide.com/s/?q=hakuba%20backcountry',
-    GEAR_RENTAL:     'https://www.klook.com/en-US/search/result/?query=hakuba%20ski%20rental',
-    AIRPORT_TRANSFER:'https://www.klook.com/en-US/search/result/?query=hakuba%20airport%20transfer',
+    GEAR_RENTAL:     'https://affiliate.klook.com/redirect?aid=145406&aff_adid=1599735&k_site=https%3A%2F%2Fwww.klook.com%2Factivity%2F103260-spicy-ski-set-snowboard-set-rental-nagano-hakuba%2F',  // Klook · SPICY rental · label app-resort-rental
+    AIRPORT_TRANSFER:'https://affiliate.klook.com/redirect?aid=145406&aff_adid=1599737&k_site=https%3A%2F%2Fwww.klook.com%2Factivity%2F97862-hakuba-ski-resorts-shuttle-bus%2F',  // Klook · airport shuttle · label app-resort-transfer
     GUMROAD_GUIDE:   'https://gumroad.com/',          // e.g. https://yourname.gumroad.com/l/hakuba-guide
   },
   GUIDE_PRODUCT: { title: 'Hakuba Valley Ski Trip Guide 2026-27', price: '$12', blurb: 'All 10 resorts, shuttles, food, onsen and etiquette — offline PDF for your phone.' },
@@ -253,7 +253,8 @@ const CONFIG = {
   DATA_BASE_URL: 'https://raw.githubusercontent.com/gundamdplanetageekk-debug/hakuba-snow-compass/data/',  // live data branch (falls back to ./data/)
   LOCAL_DATA_URL: './data/',   // seed files shipped with the site
   STATIC_MAX_AGE_MIN: 120,     // weather.json older than this → fall back to a live call
-  ALLOW_LIVE_FALLBACK: true,   // browser calls Open-Meteo directly if the cached file is stale/missing
+  ALLOW_LIVE_FALLBACK: false,  // keep false: the browser would hit the free (non-commercial) API
+  STALE_OK_MIN: 720,           // if the cache is older than STATIC_MAX_AGE_MIN, still show it (flagged) up to this age
   OPEN_METEO_API_KEY: '',      // leave EMPTY in the browser; put the key in GitHub Secrets instead
   STORAGE_KEY: 'hsc.v1',
 };
@@ -280,12 +281,17 @@ async function getData(name) {
 }
 
 async function loadWeather() {
+  let cached = null;
   try {
     const w = await getData('weather.json');
     const age = (Date.now() - new Date(w.fetched_at).getTime()) / 60000;
     if (w.data && age <= CONFIG.STATIC_MAX_AGE_MIN) return { raw: w.data, at: new Date(w.fetched_at), source: 'cached' };
+    if (w.data && age <= CONFIG.STALE_OK_MIN) cached = { raw: w.data, at: new Date(w.fetched_at), source: 'stale' };
   } catch (e) { /* no cached file yet */ }
-  if (!CONFIG.ALLOW_LIVE_FALLBACK) throw new Error('Weather cache is stale and live fallback is off.');
+  if (!CONFIG.ALLOW_LIVE_FALLBACK) {
+    if (cached) return cached;
+    throw new Error('Weather data is temporarily unavailable.');
+  }
   const url = Engine.buildOpenMeteoUrl(state.resorts, { apiKey: CONFIG.OPEN_METEO_API_KEY || null });
   return { raw: await getJSON(url), at: new Date(), source: 'live' };
 }
@@ -304,7 +310,7 @@ const byId = id => state.resorts.find(r => r.id === id);
 /* ---------- Render: shared ---------- */
 function renderStatus(day) {
   $('#statusDay').innerHTML = `Forecast for <b>${day.isTomorrow ? 'tomorrow' : 'today'}, ${fmt.date(day.date)}</b>`;
-  $('#statusUpdated').textContent = state.fetchedAt ? 'Updated ' + fmt.time(state.fetchedAt) : '';
+  $('#statusUpdated').textContent = state.fetchedAt ? (state.source === 'stale' ? 'Delayed · last update ' : 'Updated ') + fmt.time(state.fetchedAt) : '';
   $('#picksTitle').textContent = day.isTomorrow ? "Tomorrow's Best Picks" : "Today's Best Picks";
 }
 function renderStrip(ranked) {
@@ -356,8 +362,8 @@ function renderPicks(ranked) {
 }
 function renderResortCtas() {
   $('#resortCtas').innerHTML = `<h2>Sort your day</h2><div class="sponsor">Partner links</div>` +
-    cta(CONFIG.LINKS.GEAR_RENTAL, '🎿', 'Rent skis or a board', 'Pick up in the valley, skip the queue', 'Book', 'featured') +
-    cta(CONFIG.LINKS.AIRPORT_TRANSFER, '🚌', 'Airport ⇄ Hakuba transfer', 'Narita · Haneda · Nagano Station', 'Compare') +
+    cta(CONFIG.LINKS.GEAR_RENTAL, '🎿', 'Rent skis or a board', '5 shops across the valley · swap gear any day', 'Book', 'featured') +
+    cta(CONFIG.LINKS.AIRPORT_TRANSFER, '🚌', 'Airport ⇄ Hakuba shuttle', 'Direct bus from Narita · Haneda · Tokyo', 'Book') +
     (CONFIG.SHOW_GUMROAD ? cta(CONFIG.LINKS.GUMROAD_GUIDE, '📘', CONFIG.GUIDE_PRODUCT.title + ' · ' + CONFIG.GUIDE_PRODUCT.price, CONFIG.GUIDE_PRODUCT.blurb, 'Get it') : '');
 }
 function renderShuttle() {

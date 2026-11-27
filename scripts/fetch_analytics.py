@@ -61,7 +61,7 @@ def find_site_tag(token, acct):
         print("site list failed:", e, "- falling back to the beacon token on the live page")
         try:
             import re
-            html = urllib.request.urlopen(f"https://{HOST}/", timeout=30).read().decode("utf-8", "replace")
+            html = urllib.request.urlopen(urllib.request.Request(f"https://{HOST}/", headers={"User-Agent": "Mozilla/5.0 (compatible; hakuba-analytics/1.0)", "Accept": "text/html"}), timeout=30).read().decode("utf-8", "replace")
             m = re.search(r'data-cf-beacon=.{0,5}\{[^}]*"token"\s*:\s*"([0-9a-f]{32})"', html)
             print("beacon token found" if m else "no beacon on page")
             return m.group(1) if m else None

@@ -19,17 +19,17 @@ HOST = "hakuba-snow-compass.pages.dev"
 QUERY = """
 query($acct: String!, $start: Time!, $end: Time!, $site: String!) {
   viewer { accounts(filter: {accountTag: $acct}) {
-    byDay: rumPageloadEventsAdaptiveGroups(limit: 100, filter: {datetime_geq: $start, datetime_lt: $end, siteTag: $site}, orderBy: [date_ASC]) {
+    byDay: rumPageloadEventsAdaptiveGroups(limit: 100, filter: {datetime_geq: $start, datetime_leq: $end, siteTag: $site}, orderBy: [date_ASC]) {
       count sum { visits } dimensions { date } }
-    byPath: rumPageloadEventsAdaptiveGroups(limit: 50, filter: {datetime_geq: $start, datetime_lt: $end, siteTag: $site}, orderBy: [count_DESC]) {
+    byPath: rumPageloadEventsAdaptiveGroups(limit: 50, filter: {datetime_geq: $start, datetime_leq: $end, siteTag: $site}, orderBy: [count_DESC]) {
       count sum { visits } dimensions { requestPath } }
-    byReferer: rumPageloadEventsAdaptiveGroups(limit: 25, filter: {datetime_geq: $start, datetime_lt: $end, siteTag: $site}, orderBy: [count_DESC]) {
+    byReferer: rumPageloadEventsAdaptiveGroups(limit: 25, filter: {datetime_geq: $start, datetime_leq: $end, siteTag: $site}, orderBy: [count_DESC]) {
       count sum { visits } dimensions { refererHost } }
-    byCountry: rumPageloadEventsAdaptiveGroups(limit: 25, filter: {datetime_geq: $start, datetime_lt: $end, siteTag: $site}, orderBy: [count_DESC]) {
+    byCountry: rumPageloadEventsAdaptiveGroups(limit: 25, filter: {datetime_geq: $start, datetime_leq: $end, siteTag: $site}, orderBy: [count_DESC]) {
       count sum { visits } dimensions { countryName } }
-    byDevice: rumPageloadEventsAdaptiveGroups(limit: 10, filter: {datetime_geq: $start, datetime_lt: $end, siteTag: $site}, orderBy: [count_DESC]) {
+    byDevice: rumPageloadEventsAdaptiveGroups(limit: 10, filter: {datetime_geq: $start, datetime_leq: $end, siteTag: $site}, orderBy: [count_DESC]) {
       count sum { visits } dimensions { deviceType } }
-    clicksByDay: rumPageloadEventsAdaptiveGroups(limit: 500, filter: {datetime_geq: $start, datetime_lt: $end, siteTag: $site, requestPath_like: "/go/%"}, orderBy: [date_ASC]) {
+    clicksByDay: rumPageloadEventsAdaptiveGroups(limit: 500, filter: {datetime_geq: $start, datetime_leq: $end, siteTag: $site, requestPath_like: "/go/%"}, orderBy: [date_ASC]) {
       count dimensions { date requestPath } }
   } }
 }

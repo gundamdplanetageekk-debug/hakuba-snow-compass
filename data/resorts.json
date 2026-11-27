@@ -113,7 +113,7 @@
     },
     {
       "id": "sanosaka", "name": "Hakuba Sanosaka", "nameJa": "白馬さのさか", "area": "south",
-      "top": 1200, "base": 940, "fallbackTop": 1200,
+      "top": 1200, "base": 740, "fallbackTop": 1200,
       "coords": { "top": [36.6320, 137.8380], "base": [36.6360, 137.8500] },
       "aspect": "E", "treeLevel": 1, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 90, "snowBias": 0.85,
       "bcGate": false, "linkedWith": null,

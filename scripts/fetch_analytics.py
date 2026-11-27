@@ -64,7 +64,7 @@ def main():
         print("CF_API_TOKEN / CF_ACCOUNT_ID not set - skipping analytics")
         return 0
 
-    end = dt.datetime.now(dt.timezone.utc).replace(minute=0, second=0, microsecond=0)
+    end = dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
     start = end - dt.timedelta(days=a.days)
     res = post(token, {"query": QUERY, "variables": {"acct": acct, "host": HOST,
                                                      "start": start.isoformat().replace("+00:00", "Z"),
@@ -73,6 +73,13 @@ def main():
         print("GraphQL errors:", json.dumps(res["errors"])[:800], file=sys.stderr)
         return 1
     acc = res["data"]["viewer"]["accounts"][0]
+
+    if not acc["byDay"]:
+        # Diagnostics: which hosts does this account see at all?
+        dbg = post(token, {"query": """query($acct: String!, $start: Time!, $end: Time!) { viewer { accounts(filter: {accountTag: $acct}) {
+              rumPageloadEventsAdaptiveGroups(limit: 20, filter: {datetime_geq: $start, datetime_lt: $end}, orderBy: [count_DESC]) { count dimensions { requestHost siteTag } } } } }""",
+              "variables": {"acct": acct, "start": start.isoformat().replace("+00:00", "Z"), "end": end.isoformat().replace("+00:00", "Z")}})
+        print("no rows for host; account sees:", json.dumps(dbg)[:800])
 
     clicks = {}
     for g in acc["clicksByDay"]:

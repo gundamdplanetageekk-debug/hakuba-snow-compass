@@ -58,8 +58,16 @@ def find_site_tag(token, acct):
         with urllib.request.urlopen(req, timeout=60) as r:
             data = json.load(r)
     except Exception as e:
-        print("site list failed:", e)
-        return None
+        print("site list failed:", e, "- falling back to the beacon token on the live page")
+        try:
+            import re
+            html = urllib.request.urlopen(f"https://{HOST}/", timeout=30).read().decode("utf-8", "replace")
+            m = re.search(r'data-cf-beacon=.{0,5}\{[^}]*"token"\s*:\s*"([0-9a-f]{32})"', html)
+            print("beacon token found" if m else "no beacon on page")
+            return m.group(1) if m else None
+        except Exception as e2:
+            print("page fetch failed:", e2)
+            return None
     sites = data.get("result") or []
     print("web analytics sites:", [(x.get("host"), x.get("site_tag")) for x in sites])
     for x in sites:

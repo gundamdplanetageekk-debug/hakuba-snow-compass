@@ -6,7 +6,7 @@ Needs two repository secrets:
   CF_ACCOUNT_ID  - the Cloudflare account ID
 
 Writes:
-  <out>/analytics.json          last 30 days: totals, by day, top paths/referrers/countries/devices,
+  <out>/analytics.json          last 7 days: totals, by day, top paths/referrers/countries/devices,
                                 and outbound offer clicks (/go/<name>.html page views)
   <out>/analytics_history.json  one row per day, kept for ~400 days (merged with what is already there)
 Standard library only. Exits 0 without writing when the secrets are missing.
@@ -83,7 +83,7 @@ def rows(groups, dim):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="_data")
-    ap.add_argument("--days", type=int, default=30)
+    ap.add_argument("--days", type=int, default=7)  # longer windows silently return no rows on this plan; history file keeps the long view
     a = ap.parse_args()
     token, acct = os.environ.get("CF_API_TOKEN"), os.environ.get("CF_ACCOUNT_ID")
     if not token or not acct:

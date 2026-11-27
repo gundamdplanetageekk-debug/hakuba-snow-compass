@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "version": "2026-11-27",
+    "sources": [
+      "https://www.hakubavalley.com/en/safetytips_en",
+      "https://www.hakubavalley.com/cms/wp-content/uploads/2022/12/220810_HAKUBAVALLEY-Safety-Tips-EN_vfx.pdf",
+      "https://www.pref.nagano.lg.jp/kankoki/smartphone/documents/backcountry-e.pdf",
+      "https://www.pref.nagano.lg.jp/police/keisatsusho/documents/skiform-eng-fin.pdf"
+    ]
+  },
+  "disclaimerVersion": 1,
+  "gates": {
+    "summary": "Hakuba Valley Safety Tips designate backcountry gates at five resorts. Leaving the ski area anywhere else is not permitted.",
+    "withGates": ["goryu", "happo", "tsugaike", "norikura", "cortina"],
+    "withoutGates": ["hakuba47", "iwatake", "kashimayari", "jigatake", "sanosaka"],
+    "gateSeasonNote": "Gates open and close with snowpack and conditions — early and late season they may stay shut even when the resort is open."
+  },
+  "rules": [
+    { "icon": "gate", "title": "Exit only through designated BC gates", "body": "Some areas next to the resorts are closed by agreement with local authorities. Entering them can cost you your lift ticket." },
+    { "icon": "pole", "title": "Read the poles", "body": "Yellow-and-black topped poles mark the resort boundary. Yellow poles mark closed areas. Terrain even 1 m outside the boundary is uncontrolled and unpatrolled." },
+    { "icon": "doc", "title": "Submit a mountain itinerary (tozan-todoke)", "body": "File your route before entering the mountains — online via Compass, or with the Nagano Police backcountry form." },
+    { "icon": "beacon", "title": "Beacon, shovel, probe — and a partner", "body": "Travel in a group that includes experienced members and practice companion rescue." },
+    { "icon": "guide", "title": "New to Japan BC? Hire a certified guide", "body": "Check your guide holds a qualification from a national body in IFMGA (in Japan: the Japan Mountain Guides Association)." },
+    { "icon": "sos", "title": "Rescue is slow and can be billed", "body": "In an emergency call 110 (police) or 119 (fire/ambulance) immediately." }
+  ],
+  "links": [
+    { "label": "JAN Avalanche Bulletin (Hakuba)", "url": "https://nadare.jp/", "primary": true },
+    { "label": "Hakuba Valley Safety Tips", "url": "https://www.hakubavalley.com/en/safetytips_en" },
+    { "label": "Compass — online itinerary", "url": "https://www.mt-compass.com/" },
+    { "label": "Nagano Police BC form (PDF)", "url": "https://www.pref.nagano.lg.jp/police/keisatsusho/documents/skiform-eng-fin.pdf" },
+    { "label": "Nagano Police: Avoiding danger in the BC (PDF)", "url": "https://www.pref.nagano.lg.jp/kankoki/smartphone/documents/backcountry-e.pdf" }
+  ],
+  "emergency": [
+    { "label": "Police", "number": "110" },
+    { "label": "Fire / Ambulance", "number": "119" },
+    { "label": "Japan Visitor Hotline (JNTO, 24h, English)", "number": "050-3816-2787" }
+  ]
+}

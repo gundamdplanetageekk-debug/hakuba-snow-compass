@@ -1,0 +1,126 @@
+{
+  "_meta": {
+    "version": "2026-11-27",
+    "note": "Static terrain profile for the scoring algorithm. Elevations from resort/agency listings (Happo 1831/760, Goryu 1676/750, Hakuba47 1614/820, Cortina 1402 top/530 vert, Norikura 1300 top/600 vert). Coordinates are approximate (grid models are 2-11 km) and only need to land in the right model cell. Fields marked confidence:'approx' should be checked on the next data pass.",
+    "scoring_fields": {
+      "snowBias": "Orographic multiplier on model snowfall. North end (Otari) catches more Sea-of-Japan snow; south end (Omachi) gets less but drier snow.",
+      "treeLevel": "0-3. In-bounds tree terrain that keeps visibility and shelter in storms.",
+      "windExposure": "1-5. How much alpine, above-treeline lift terrain the resort relies on.",
+      "upperHoldGust": "km/h summit gust at which upper lifts typically go on wind hold.",
+      "fullHoldGust": "km/h summit gust at which most of the mountain (incl. gondola) is likely to stop."
+    }
+  },
+  "resorts": [
+    {
+      "id": "happo", "name": "Hakuba Happo-one", "nameJa": "白馬八方尾根", "area": "central",
+      "top": 1831, "base": 760, "fallbackTop": 1400,
+      "coords": { "top": [36.6955, 137.8030], "base": [36.6985, 137.8330] },
+      "aspect": "E", "treeLevel": 1, "windExposure": 5, "upperHoldGust": 55, "fullHoldGust": 80, "snowBias": 1.0,
+      "bcGate": true, "linkedWith": null,
+      "tags": ["Biggest vertical in the valley", "Steep groomers & bumps", "Alpine BC gateway"],
+      "goodFor": ["advanced", "intermediate"],
+      "windNote": "Upper quads (Alpen, Grat, Kurobishi) are the first to close in wind; the gondola can follow.",
+      "liftStatusKey": "happo", "officialUrl": null, "confidence": "high"
+    },
+    {
+      "id": "goryu", "name": "Able Hakuba Goryu", "nameJa": "エイブル白馬五竜", "area": "central",
+      "top": 1676, "base": 750, "fallbackTop": 1000,
+      "coords": { "top": [36.6640, 137.8120], "base": [36.6630, 137.8380] },
+      "aspect": "E", "treeLevel": 1, "windExposure": 4, "upperHoldGust": 60, "fullHoldGust": 80, "snowBias": 1.0,
+      "bcGate": true, "linkedWith": "hakuba47",
+      "tags": ["Linked with Hakuba47", "Escal Plaza base", "Night skiing (Toomi)"],
+      "goodFor": ["beginner", "intermediate", "advanced"],
+      "windNote": "Alps Daira summit lifts close first (patrol reports ~20 m/s); lower Toomi area often keeps running.",
+      "liftStatusKey": "goryu", "officialUrl": "https://www.hakubaescal.com/winter-en/", "confidence": "high"
+    },
+    {
+      "id": "hakuba47", "name": "Hakuba47 Winter Sports Park", "nameJa": "Hakuba47", "area": "central",
+      "top": 1614, "base": 820, "fallbackTop": 1200,
+      "coords": { "top": [36.6720, 137.8150], "base": [36.6735, 137.8330] },
+      "aspect": "NE", "treeLevel": 3, "windExposure": 3, "upperHoldGust": 60, "fullHoldGust": 85, "snowBias": 1.0,
+      "bcGate": false, "linkedWith": "goryu",
+      "tags": ["Best terrain park", "Abundant tree runs", "Linked with Goryu"],
+      "goodFor": ["intermediate", "advanced", "park"],
+      "windNote": "Tree runs keep it skiable in storms; Line-8 gondola can slow or stop in strong wind.",
+      "liftStatusKey": "hakuba47", "officialUrl": null, "confidence": "high"
+    },
+    {
+      "id": "iwatake", "name": "Hakuba Iwatake Mountain Resort", "nameJa": "白馬岩岳", "area": "central",
+      "top": 1289, "base": 750, "fallbackTop": 1289,
+      "coords": { "top": [36.7130, 137.8700], "base": [36.7170, 137.8580] },
+      "aspect": "W", "treeLevel": 2, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 85, "snowBias": 0.95,
+      "bcGate": false, "linkedWith": null,
+      "tags": ["360° Alps panorama", "Mostly forested", "Quieter tree areas"],
+      "goodFor": ["beginner", "intermediate", "sightseeing"],
+      "windNote": "Lower, forested mountain on the east side of the valley — a classic windy-day fallback.",
+      "liftStatusKey": "iwatake", "officialUrl": "https://iwatake-mountain-resort.com/", "confidence": "approx"
+    },
+    {
+      "id": "tsugaike", "name": "Tsugaike Mountain Resort", "nameJa": "栂池高原", "area": "north",
+      "top": 1704, "base": 800, "fallbackTop": 1200,
+      "coords": { "top": [36.7700, 137.8100], "base": [36.7660, 137.8350] },
+      "aspect": "E", "treeLevel": 2, "windExposure": 4, "upperHoldGust": 60, "fullHoldGust": 85, "snowBias": 1.15,
+      "bcGate": true, "linkedWith": null,
+      "tags": ["Wide beginner slopes", "Deep north-end snow", "BC gates"],
+      "goodFor": ["beginner", "intermediate", "advanced"],
+      "windNote": "Wide open upper bowl is exposed; lower wide slopes stay usable.",
+      "seasonNote": "2026-27: night skiing cancelled; new six-seat chair scheduled for late December.",
+      "liftStatusKey": "tsugaike", "officialUrl": null, "confidence": "approx"
+    },
+    {
+      "id": "norikura", "name": "Hakuba Norikura", "nameJa": "白馬乗鞍", "area": "north",
+      "top": 1300, "base": 700, "fallbackTop": 1300,
+      "coords": { "top": [36.8080, 137.8450], "base": [36.8020, 137.8580] },
+      "aspect": "NE", "treeLevel": 2, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 90, "snowBias": 1.25,
+      "bcGate": true, "linkedWith": "cortina",
+      "tags": ["Fewer crowds", "Heavy snowfall", "Tree runs"],
+      "goodFor": ["beginner", "intermediate", "advanced"],
+      "windNote": "Low elevation and trees — usually runs when the big mountains are on hold.",
+      "liftStatusKey": "norikura", "officialUrl": "https://www.hakunori.com/", "confidence": "approx"
+    },
+    {
+      "id": "cortina", "name": "Hakuba Cortina", "nameJa": "白馬コルチナ", "area": "north",
+      "top": 1402, "base": 872, "fallbackTop": 1402,
+      "coords": { "top": [36.8200, 137.8450], "base": [36.8150, 137.8580] },
+      "aspect": "NE", "treeLevel": 3, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 90, "snowBias": 1.35,
+      "bcGate": true, "linkedWith": "norikura",
+      "tags": ["Powder-day magnet", "Steep in-bounds trees", "Bowl catches snow"],
+      "goodFor": ["advanced", "powder"],
+      "windNote": "Northernmost resort; can see far more snow than Happo. Expect lift-line crowds on deep days.",
+      "liftStatusKey": "cortina", "officialUrl": "https://www.hgp.co.jp/cortina/ski/index.html", "confidence": "high"
+    },
+    {
+      "id": "kashimayari", "name": "Kashimayari Snow Resort", "nameJa": "鹿島槍", "area": "south",
+      "top": 1550, "base": 830, "fallbackTop": 1200,
+      "coords": { "top": [36.5730, 137.8150], "base": [36.5800, 137.8300] },
+      "aspect": "E", "treeLevel": 1, "windExposure": 3, "upperHoldGust": 60, "fullHoldGust": 85, "snowBias": 0.85,
+      "bcGate": false, "linkedWith": null,
+      "tags": ["Family friendly", "Drier inland snow", "Quiet"],
+      "goodFor": ["beginner", "intermediate", "family"],
+      "windNote": "South end: less snow volume but lighter, drier snow.",
+      "liftStatusKey": "kashimayari", "officialUrl": null, "confidence": "approx"
+    },
+    {
+      "id": "jigatake", "name": "Jiigatake Ski Resort", "nameJa": "爺ガ岳", "area": "south",
+      "top": 1200, "base": 740, "fallbackTop": 1200,
+      "coords": { "top": [36.5600, 137.8300], "base": [36.5650, 137.8420] },
+      "aspect": "E", "treeLevel": 1, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 90, "snowBias": 0.8,
+      "bcGate": false, "linkedWith": null,
+      "tags": ["Lake views", "Beginner friendly", "No crowds"],
+      "goodFor": ["beginner", "family"],
+      "windNote": "Small and low; good for learners on quiet days.",
+      "liftStatusKey": "jigatake", "officialUrl": null, "confidence": "approx"
+    },
+    {
+      "id": "sanosaka", "name": "Hakuba Sanosaka", "nameJa": "白馬さのさか", "area": "south",
+      "top": 1200, "base": 940, "fallbackTop": 1200,
+      "coords": { "top": [36.6320, 137.8380], "base": [36.6360, 137.8500] },
+      "aspect": "E", "treeLevel": 1, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 90, "snowBias": 0.85,
+      "bcGate": false, "linkedWith": null,
+      "tags": ["Small & relaxed", "Snow play", "Good value"],
+      "goodFor": ["beginner", "family"],
+      "windNote": "Small hill; check opening dates early and late season.",
+      "liftStatusKey": "sanosaka", "officialUrl": null, "confidence": "approx"
+    }
+  ]
+}

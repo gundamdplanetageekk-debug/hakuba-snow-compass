@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hakuba Snow Compass — Where to ski in Hakuba today</title>
+<meta name="description" content="Live wind, snow and freezing level for all 10 Hakuba Valley resorts, ranked for today. Backcountry gates, JAN avalanche links and shuttle info in one screen.">
+<meta name="theme-color" content="#0b1622">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 26 12 9l5 8 3-4 10 13z' fill='%237dd3fc'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #0b1622; --panel: #122233; --panel-2: #17304a; --line: #24425f;
+    --ink: #f1f7fc; --ink-2: #a9c1d6; --ink-3: #6f8ca5;
+    --ice: #7dd3fc; --ice-strong: #38bdf8; --good: #4ade80; --warn: #fbbf24; --bad: #f87171;
+    --radius: 16px; --tap: 44px;
+    --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+  body { padding-bottom: env(safe-area-inset-bottom); }
+  a { color: var(--ice); }
+  button { font: inherit; color: inherit; }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 0 16px 48px; }
+
+  header.top { position: sticky; top: 0; z-index: 10; background: rgba(11,22,34,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .top-inner { max-width: 560px; margin: 0 auto; padding: 12px 16px 10px; }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand svg { flex: none; }
+  .brand h1 { font-size: 18px; margin: 0; letter-spacing: -.01em; }
+  .brand small { display: block; color: var(--ink-3); font-size: 12px; font-weight: 500; }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; margin-top: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 3px; }
+  .seg button { min-height: 40px; border: 0; border-radius: 9px; background: transparent; font-weight: 650; font-size: 14px; color: var(--ink-2); cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .seg button.bc[aria-pressed="true"] { background: var(--warn); color: #1a1204; }
+
+  .status { display: flex; justify-content: space-between; gap: 8px; color: var(--ink-3); font-size: 12px; margin: 14px 2px 8px; }
+  .status b { color: var(--ink-2); font-weight: 600; }
+
+  .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 8px; text-align: center; }
+  .stat .v { font-size: 19px; font-weight: 750; font-variant-numeric: tabular-nums; }
+  .stat .k { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); margin: 26px 2px 10px; }
+  h2 span { color: var(--ink-3); text-transform: none; letter-spacing: 0; font-weight: 500; }
+
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; }
+  .pick { display: grid; grid-template-columns: 38px 1fr auto; gap: 12px; align-items: start; }
+  .rank { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; background: var(--panel-2); color: var(--ink-2); }
+  .pick.first .rank { background: var(--ice); color: var(--bg); }
+  .pick h3 { margin: 0; font-size: 17px; line-height: 1.25; }
+  .pick .ja { color: var(--ink-3); font-size: 12px; margin-left: 4px; font-weight: 500; }
+  .score { text-align: right; }
+  .score .n { font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; }
+  .score .l { font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; }
+  .bar { height: 6px; background: var(--panel-2); border-radius: 3px; margin: 10px 0 8px; overflow: hidden; grid-column: 1 / -1; }
+  .bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--ice-strong), var(--ice)); }
+  .reasons { list-style: none; padding: 0; margin: 0; grid-column: 1 / -1; display: grid; gap: 4px; }
+  .reasons li { font-size: 14px; color: var(--ink-2); padding-left: 18px; position: relative; }
+  .reasons li::before { content: ""; position: absolute; left: 2px; top: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--good); }
+  .reasons li.bad::before { background: var(--warn); }
+  .meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip { font-size: 12px; padding: 4px 8px; border-radius: 999px; background: var(--panel-2); color: var(--ink-2); border: 1px solid var(--line); }
+  .chip.gate { border-color: var(--warn); color: var(--warn); }
+  .mini { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; grid-column: 1 / -1; margin-top: 10px; font-size: 12px; color: var(--ink-3); }
+  .mini b { display: block; color: var(--ink); font-size: 14px; font-variant-numeric: tabular-nums; }
+
+  .rest { padding: 4px 14px; }
+  .rest-row { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+  .rest-row:first-child { border-top: 0; }
+  .rest-row .r { color: var(--ink-3); font-weight: 700; font-size: 13px; }
+  .rest-row .nm { font-size: 15px; font-weight: 600; }
+  .rest-row .why { font-size: 12px; color: var(--ink-3); }
+  .rest-row .s { font-weight: 800; font-variant-numeric: tabular-nums; }
+
+  .cta { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); min-height: 64px; }
+  .cta .ic { width: 42px; height: 42px; border-radius: 12px; background: var(--panel-2); display: grid; place-items: center; flex: none; }
+  .cta b { display: block; font-size: 15px; }
+  .cta span { font-size: 13px; color: var(--ink-2); }
+  .cta .go { margin-left: auto; color: var(--ice); font-weight: 700; white-space: nowrap; }
+  .cta.featured { background: linear-gradient(135deg, #1b3a57, #122233); border-color: var(--ice-strong); }
+  .cta.featured-bc { background: linear-gradient(135deg, #3a2c0c, #122233); border-color: var(--warn); }
+  .sponsor { font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; margin: 0 2px 6px; }
+
+  details.bus { padding: 0; }
+  details.bus summary { list-style: none; cursor: pointer; padding: 14px; display: flex; justify-content: space-between; gap: 10px; min-height: var(--tap); }
+  details.bus summary::-webkit-details-marker { display: none; }
+  details.bus summary b { font-size: 15px; }
+  details.bus summary span { font-size: 12px; color: var(--ink-3); display: block; margin-top: 2px; font-weight: 500; }
+  details.bus summary::after { content: "+"; color: var(--ice); font-size: 22px; line-height: 1; }
+  details.bus[open] summary::after { content: "–"; }
+  .bus-body { padding: 0 14px 14px; font-size: 14px; color: var(--ink-2); }
+  .bus-body ul { padding-left: 18px; margin: 8px 0; }
+  .free { color: var(--good); font-weight: 650; }
+  .notice { font-size: 13px; color: var(--ink-2); background: var(--panel-2); border-radius: 12px; padding: 10px 12px; margin-bottom: 10px; }
+
+  table.bands { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+  .bands th { text-align: left; font-size: 11px; color: var(--ink-3); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; padding: 0 4px 8px; }
+  .bands td { padding: 10px 4px; border-top: 1px solid var(--line); }
+  .bands td small { display: block; color: var(--ink-3); font-size: 11px; }
+  .arrow { display: inline-block; transform-origin: 50% 50%; color: var(--ice); }
+
+  .flag { display: flex; gap: 10px; font-size: 14px; color: var(--ink-2); padding: 10px 0; border-top: 1px solid var(--line); }
+  .flag:first-child { border-top: 0; padding-top: 0; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; flex: none; }
+  .dot.high { background: var(--bad); } .dot.mid { background: var(--warn); } .dot.low { background: var(--good); }
+
+  .jan { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; border-radius: 14px; background: var(--warn); color: #1a1204; font-weight: 800; text-decoration: none; font-size: 16px; }
+  .gates { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .gates h4 { margin: 0 0 6px; font-size: 13px; }
+  .gates ul { list-style: none; margin: 0; padding: 0; font-size: 14px; color: var(--ink-2); display: grid; gap: 4px; }
+  .ok { color: var(--good); } .no { color: var(--bad); }
+  .rule { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+  .rule:first-child { border-top: 0; padding-top: 0; }
+  .rule b { font-size: 14px; display: block; }
+  .rule span { font-size: 13px; color: var(--ink-2); }
+  .links { display: grid; gap: 8px; }
+  .links a { display: flex; justify-content: space-between; min-height: var(--tap); align-items: center; padding: 0 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: var(--ink); font-size: 14px; }
+  .sos { display: grid; gap: 6px; }
+  .sos a { display: flex; justify-content: space-between; text-decoration: none; color: var(--ink); font-size: 15px; padding: 6px 0; }
+  .sos a b { color: var(--ice); font-variant-numeric: tabular-nums; }
+
+  .skeleton { height: 120px; border-radius: var(--radius); background: linear-gradient(90deg, var(--panel) 0%, var(--panel-2) 50%, var(--panel) 100%); background-size: 200% 100%; animation: sh 1.2s infinite; margin-bottom: 10px; }
+  @keyframes sh { to { background-position: -200% 0; } }
+  .error { border-color: var(--bad); color: var(--ink-2); font-size: 14px; }
+  .hidden { display: none !important; }
+
+  footer { color: var(--ink-3); font-size: 12px; line-height: 1.55; margin-top: 32px; border-top: 1px solid var(--line); padding-top: 16px; }
+  footer a { color: var(--ink-2); }
+
+  dialog { border: 1px solid var(--warn); border-radius: 18px; background: var(--panel); color: var(--ink); padding: 20px; max-width: 480px; width: calc(100% - 32px); }
+  dialog::backdrop { background: rgba(3,8,14,.8); }
+  dialog h3 { margin: 0 0 8px; font-size: 19px; }
+  dialog p { color: var(--ink-2); font-size: 14px; line-height: 1.5; margin: 0 0 12px; }
+  dialog label { display: grid; grid-template-columns: 22px 1fr; gap: 10px; font-size: 14px; color: var(--ink-2); padding: 8px 0; cursor: pointer; }
+  dialog input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--warn); margin: 1px 0 0; }
+  .dlg-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; margin-top: 14px; }
+  .btn { min-height: 48px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel-2); font-weight: 700; cursor: pointer; }
+  .btn.primary { background: var(--warn); color: #1a1204; border-color: var(--warn); }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+  :focus-visible { outline: 3px solid var(--ice); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { .skeleton { animation: none; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#122233"/><path d="M4 25 13 10l4.5 7 2.5-3.5L28 25z" fill="#7dd3fc"/><path d="M13 10l2.2 3.4-2.2 1.4-2.1-1.3z" fill="#f1f7fc"/></svg>
+      <div><h1>Hakuba Snow Compass</h1><small>10 resorts · live wind &amp; snow · one screen</small></div>
+    </div>
+    <div class="seg" role="group" aria-label="Mode">
+      <button id="btnResort" aria-pressed="true">Resort Mode</button>
+      <button id="btnBC" class="bc" aria-pressed="false">Backcountry Mode</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="status"><span id="statusDay">Loading forecast…</span><span id="statusUpdated"></span></div>
+  <div class="strip" id="strip"></div>
+
+  <!-- RESORT MODE -->
+  <section id="resortView">
+    <h2 id="picksTitle">Today's Best Picks</h2>
+    <div id="picks"><div class="skeleton"></div><div class="skeleton"></div></div>
+    <div id="rest"></div>
+
+    <div id="resortCtas"></div>
+
+    <h2>Getting there <span>· shuttle buses</span></h2>
+    <div id="shuttle"></div>
+
+    <h2>Emergency</h2>
+    <div class="card sos" id="sosResort"></div>
+  </section>
+
+  <!-- BACKCOUNTRY MODE -->
+  <section id="bcView" class="hidden">
+    <h2>Avalanche bulletin first</h2>
+    <a class="jan" id="janLink" target="_blank" rel="noopener">Open today's JAN bulletin ↗</a>
+    <p class="notice" style="margin-top:10px">Everything below is <b>weather data, not an avalanche forecast</b>. The Japan Avalanche Network bulletin is the reference for snowpack and danger ratings.</p>
+
+    <h2 id="bandsTitle">Wind by elevation</h2>
+    <div class="card"><table class="bands" id="bands"></table></div>
+
+    <h2>Weather red flags</h2>
+    <div class="card" id="flags"></div>
+
+    <div id="bcCtas"></div>
+
+    <h2>Where you may exit</h2>
+    <div class="card">
+      <p style="margin:0 0 12px;font-size:14px;color:var(--ink-2)" id="gateSummary"></p>
+      <div class="gates">
+        <div><h4 class="ok">BC gates</h4><ul id="gatesYes"></ul></div>
+        <div><h4 class="no">No BC access</h4><ul id="gatesNo"></ul></div>
+      </div>
+      <p style="margin:12px 0 0;font-size:12px;color:var(--ink-3)" id="gateSeason"></p>
+    </div>
+
+    <h2>Local rules</h2>
+    <div class="card" id="rules"></div>
+
+    <h2>Official links</h2>
+    <div class="links" id="bcLinks"></div>
+
+    <h2>Emergency</h2>
+    <div class="card sos" id="sosBC"></div>
+  </section>
+
+  <footer>
+    <p id="disclosure"></p>
+    <p>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (CC BY 4.0). Resort rankings are an automated estimate from forecast models and terrain profiles — always check official lift status before you travel.</p>
+    <p>Hakuba Snow Compass is independent and not affiliated with Hakuba Valley, the resorts, or the Japan Avalanche Network.</p>
+  </footer>
+</main>
+
+<dialog id="bcDialog" aria-labelledby="bcDlgTitle">
+  <form method="dialog" id="bcForm">
+    <h3 id="bcDlgTitle">Before you use Backcountry Mode</h3>
+    <p>Terrain outside the resort boundary is uncontrolled, unpatrolled and can avalanche. This app shows model weather only. It does not assess snowpack, and it can be wrong.</p>
+    <label><input type="checkbox" required> I understand this is not an avalanche forecast. I will read the JAN bulletin and judge conditions myself.</label>
+    <label><input type="checkbox" required> I will leave the resort only through designated BC gates, carry a beacon, shovel and probe, and submit a mountain itinerary.</label>
+    <label><input type="checkbox" required> I accept full responsibility for my decisions in the backcountry.</label>
+    <div class="dlg-actions">
+      <button class="btn" value="cancel" formnovalidate>Back</button>
+      <button class="btn primary" id="bcAccept" value="accept" disabled>I agree — continue</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="engine.js"></script>
+<script>
+/* =====================================================================
+   CONFIG — edit only this block to change links, data sources and copy.
+   ===================================================================== */
+const CONFIG = {
+  // Monetization (replace with your tracked affiliate / product URLs)
+  LINKS: {
+    BC_TOUR_VIATOR:  'https://www.viator.com/searchResults/all?text=hakuba%20backcountry',
+    BC_TOUR_GYG:     'https://www.getyourguide.com/s/?q=hakuba%20backcountry',
+    GEAR_RENTAL:     'https://www.klook.com/en-US/search/result/?query=hakuba%20ski%20rental',
+    AIRPORT_TRANSFER:'https://www.klook.com/en-US/search/result/?query=hakuba%20airport%20transfer',
+    GUMROAD_GUIDE:   'https://gumroad.com/',          // e.g. https://yourname.gumroad.com/l/hakuba-guide
+  },
+  GUIDE_PRODUCT: { title: 'Hakuba Valley Ski Trip Guide 2026-27', price: '$12', blurb: 'All 10 resorts, shuttles, food, onsen and etiquette — offline PDF for your phone.' },
+  SHOW_GUMROAD: false,         // flip to true once the guide is live on Gumroad
+  AFFILIATE_DISCLOSURE: 'Some links on this page are affiliate links. If you book through them we may earn a commission at no extra cost to you.',
+
+  // Data
+  DATA_BASE_URL: 'https://raw.githubusercontent.com/gundamdplanetageekk-debug/hakuba-snow-compass/data/',  // live data branch (falls back to ./data/)
+  LOCAL_DATA_URL: './data/',   // seed files shipped with the site
+  STATIC_MAX_AGE_MIN: 120,     // weather.json older than this → fall back to a live call
+  ALLOW_LIVE_FALLBACK: true,   // browser calls Open-Meteo directly if the cached file is stale/missing
+  OPEN_METEO_API_KEY: '',      // leave EMPTY in the browser; put the key in GitHub Secrets instead
+  STORAGE_KEY: 'hsc.v1',
+};
+
+/* ===================================================================== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const store = {
+  get() { try { return JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEY)) || {}; } catch (e) { return {}; } },
+  set(patch) { try { localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(Object.assign(this.get(), patch))); } catch (e) {} }
+};
+const state = { mode: 'resort', resorts: [], safety: null, shuttle: null, lifts: null, norm: null, fetchedAt: null, source: '' };
+
+async function getJSON(url) {
+  const r = await fetch(url, { cache: 'no-cache' });
+  if (!r.ok) throw new Error(r.status + ' ' + url);
+  return r.json();
+}
+async function getData(name) {
+  if (CONFIG.DATA_BASE_URL !== CONFIG.LOCAL_DATA_URL) {
+    try { return await getJSON(CONFIG.DATA_BASE_URL + name); } catch (e) { /* fall through to seed */ }
+  }
+  return getJSON(CONFIG.LOCAL_DATA_URL + name);
+}
+
+async function loadWeather() {
+  try {
+    const w = await getData('weather.json');
+    const age = (Date.now() - new Date(w.fetched_at).getTime()) / 60000;
+    if (w.data && age <= CONFIG.STATIC_MAX_AGE_MIN) return { raw: w.data, at: new Date(w.fetched_at), source: 'cached' };
+  } catch (e) { /* no cached file yet */ }
+  if (!CONFIG.ALLOW_LIVE_FALLBACK) throw new Error('Weather cache is stale and live fallback is off.');
+  const url = Engine.buildOpenMeteoUrl(state.resorts, { apiKey: CONFIG.OPEN_METEO_API_KEY || null });
+  return { raw: await getJSON(url), at: new Date(), source: 'live' };
+}
+
+const fmt = {
+  t: v => v == null ? '—' : Math.round(v) + '°',
+  cm: v => v == null ? '—' : Math.round(v) + ' cm',
+  kmh: v => v == null ? '—' : Math.round(v),
+  m: v => v == null ? '—' : (Math.round(v / 50) * 50).toLocaleString('en-US') + ' m',
+  time: d => d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Tokyo' }) + ' JST',
+  date: s => new Date(s + 'T12:00:00+09:00').toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'Asia/Tokyo' })
+};
+const arrow = deg => deg == null ? '' : `<span class="arrow" style="transform:rotate(${Math.round(deg + 180)}deg)" aria-hidden="true">↑</span>`;
+const byId = id => state.resorts.find(r => r.id === id);
+
+/* ---------- Render: shared ---------- */
+function renderStatus(day) {
+  $('#statusDay').innerHTML = `Forecast for <b>${day.isTomorrow ? 'tomorrow' : 'today'}, ${fmt.date(day.date)}</b>`;
+  $('#statusUpdated').textContent = state.fetchedAt ? 'Updated ' + fmt.time(state.fetchedAt) : '';
+  $('#picksTitle').textContent = day.isTomorrow ? "Tomorrow's Best Picks" : "Today's Best Picks";
+}
+function renderStrip(ranked) {
+  const ref = ranked.find(x => x.id === 'happo') || ranked[0];
+  const maxFresh = Math.max(...ranked.map(x => (x.weather.snow24 || 0) * x.resort.snowBias));
+  const w = ref.weather;
+  $('#strip').innerHTML = [
+    [fmt.cm(maxFresh), 'Fresh 24 h'],
+    [fmt.t(w.tempTop), 'Summit temp'],
+    [fmt.kmh(w.gustMax), 'Gust km/h'],
+    [w.freezing == null ? '—' : (Math.round(w.freezing / 100) / 10).toFixed(1) + 'k', 'Freezing m']
+  ].map(([v, k]) => `<div class="stat"><div class="v">${v}</div><div class="k">${k}</div></div>`).join('');
+}
+function renderSOS(sel) {
+  $(sel).innerHTML = state.safety.emergency.map(e => `<a href="tel:${e.number.replace(/[^0-9+]/g, '')}"><span>${esc(e.label)}</span><b>${esc(e.number)}</b></a>`).join('');
+}
+const cta = (href, icon, title, sub, go, cls) => `<a class="card cta ${cls || ''}" href="${esc(href)}" target="_blank" rel="sponsored noopener"><div class="ic" aria-hidden="true">${icon}</div><div><b>${esc(title)}</b><span>${esc(sub)}</span></div><div class="go">${esc(go)} →</div></a>`;
+
+/* ---------- Render: Resort Mode ---------- */
+function renderPicks(ranked) {
+  const top = ranked.slice(0, 3), rest = ranked.slice(3);
+  $('#picks').innerHTML = top.map((x, i) => {
+    const r = x.resort, w = x.weather;
+    const reasons = x.reasons.length ? x.reasons : [{ t: 'Steady conditions', good: true }];
+    return `<article class="card pick ${i === 0 ? 'first' : ''}">
+      <div class="rank">${i + 1}</div>
+      <div><h3>${esc(r.name)}<span class="ja">${esc(r.nameJa)}</span></h3></div>
+      <div class="score"><div class="n">${x.score}</div><div class="l">score</div></div>
+      <div class="bar"><i style="width:${x.score}%"></i></div>
+      <ul class="reasons">${reasons.map(t => `<li class="${t.good ? '' : 'bad'}">${esc(t.t)}</li>`).join('')}</ul>
+      <div class="mini">
+        <div><b>${fmt.cm((w.snow24 || 0) * r.snowBias)}</b>new</div>
+        <div><b>${fmt.t(w.tempTop)}</b>summit</div>
+        <div><b>${arrow(w.windDir)} ${fmt.kmh(w.gustMax)}</b>gust km/h</div>
+        <div><b>${x.skiableVert} m</b>vertical</div>
+      </div>
+      <div class="meta">
+        ${r.bcGate ? '<span class="chip gate">BC gate</span>' : ''}
+        ${r.tags.slice(0, 2).map(t => `<span class="chip">${esc(t)}</span>`).join('')}
+        ${r.linkedWith ? `<span class="chip">Linked: ${esc(byId(r.linkedWith).name.replace('Hakuba ', '').replace('Able ', ''))}</span>` : ''}
+      </div>
+      ${r.seasonNote ? `<p style="grid-column:1/-1;margin:10px 0 0;font-size:12px;color:var(--ink-3)">${esc(r.seasonNote)}</p>` : ''}
+    </article>`;
+  }).join('');
+  $('#rest').innerHTML = rest.length ? `<div class="card rest">${rest.map((x, i) => `
+    <div class="rest-row"><div class="r">${i + 4}</div>
+      <div><div class="nm">${esc(x.resort.name)}</div><div class="why">${esc((x.reasons[0] || { t: x.resort.tags[0] }).t)}</div></div>
+      <div class="s">${x.score}</div></div>`).join('')}</div>` : '';
+}
+function renderResortCtas() {
+  $('#resortCtas').innerHTML = `<h2>Sort your day</h2><div class="sponsor">Partner links</div>` +
+    cta(CONFIG.LINKS.GEAR_RENTAL, '🎿', 'Rent skis or a board', 'Pick up in the valley, skip the queue', 'Book', 'featured') +
+    cta(CONFIG.LINKS.AIRPORT_TRANSFER, '🚌', 'Airport ⇄ Hakuba transfer', 'Narita · Haneda · Nagano Station', 'Compare') +
+    (CONFIG.SHOW_GUMROAD ? cta(CONFIG.LINKS.GUMROAD_GUIDE, '📘', CONFIG.GUIDE_PRODUCT.title + ' · ' + CONFIG.GUIDE_PRODUCT.price, CONFIG.GUIDE_PRODUCT.blurb, 'Get it') : '');
+}
+function renderShuttle() {
+  const s = state.shuttle;
+  const pending = s._meta.status !== 'parsed' || s._meta.needsReview;
+  $('#shuttle').innerHTML =
+    `<div class="notice">${esc(s.passNote)}${pending ? ' <br><b>2026-27 timetables:</b> follow the official links below until the live timetable is loaded.' : ''}</div>` +
+    s.systems.map(sys => `<details class="card bus"><summary><div><b>${esc(sys.name)}</b><span>${sys.freeWithPass ? '<span class="free">Free with HV pass</span> · ' : ''}${esc(sys.fare)}</span></div></summary>
+      <div class="bus-body">
+        ${sys.connects.length ? `<div>Serves: ${sys.connects.map(id => esc(byId(id) ? byId(id).name.replace('Hakuba ', '').replace('Able ', '') : id)).join(', ')}</div>` : ''}
+        <div style="margin-top:6px;color:var(--ink-3)">${esc(sys.lastSeasonPeriod)}</div>
+        <ul>${sys.tips.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+        ${renderDepartures(sys.id)}
+        <a href="${esc(sys.url)}" target="_blank" rel="noopener">Official timetable ↗</a>
+      </div></details>`).join('');
+}
+function renderDepartures(systemId) {
+  if (state.shuttle._meta.needsReview) return '';  // unreviewed auto-parsed data is never shown
+  const rows = (state.shuttle.timetable || []).filter(t => t.system === systemId);
+  if (!rows.length) return '';
+  const nowHM = Engine.jstHourString().slice(11, 13) + ':' + String(new Date().getUTCMinutes()).padStart(2, '0');
+  return rows.slice(0, 6).map(t => {
+    const next = (t.times || []).filter(x => x >= nowHM).slice(0, 3);
+    return `<div style="display:flex;justify-content:space-between;padding:4px 0;border-top:1px solid var(--line)"><span>${esc(t.stop)}</span><b>${next.length ? next.join(' · ') : 'No more today'}</b></div>`;
+  }).join('');
+}
+
+/* ---------- Render: Backcountry Mode ---------- */
+function renderBC() {
+  const bc = Engine.backcountry(state.norm, state.resorts);
+  const s = state.safety;
+  $('#janLink').href = s.links.find(l => l.primary).url;
+  if (bc) {
+    $('#bandsTitle').textContent = 'Wind by elevation · ' + (bc.day.isTomorrow ? 'tomorrow' : 'today') + ' 08–14h';
+    $('#bands').innerHTML = `<tr><th>Band</th><th>Wind</th><th>From</th><th>Temp</th></tr>` + bc.bands.map(b => `
+      <tr><td>${esc(b.label)}<small>${esc(b.elev)}</small></td>
+      <td><b>${fmt.kmh(b.wind)}</b>${b.gust != null ? ` <small>gust ${fmt.kmh(b.gust)}</small>` : '<small>km/h</small>'}</td>
+      <td>${arrow(b.dir)} ${Engine.compass(b.dir)}</td><td>${fmt.t(b.temp)}</td></tr>`).join('') +
+      `<tr><td>Freezing level</td><td colspan="3"><b>${fmt.m(bc.freezing)}</b></td></tr>
+       <tr><td>New snow</td><td colspan="3"><b>${fmt.cm(bc.new24)}</b> / 24 h · <b>${fmt.cm(bc.new72)}</b> / 72 h <small>north &amp; central resort tops</small></td></tr>
+       <tr><td>Lee aspects</td><td colspan="3"><b>${bc.leeAspects.join(' · ') || '—'}</b><small>where ridge winds deposit snow</small></td></tr>`;
+    $('#flags').innerHTML = bc.flags.map(f => `<div class="flag"><span class="dot ${f.level}"></span><span>${esc(f.t)}</span></div>`).join('');
+  }
+  $('#gateSummary').textContent = s.gates.summary;
+  $('#gateSeason').textContent = s.gates.gateSeasonNote;
+  $('#gatesYes').innerHTML = s.gates.withGates.map(id => `<li>${esc(byId(id).name)}</li>`).join('');
+  $('#gatesNo').innerHTML = s.gates.withoutGates.map(id => `<li>${esc(byId(id).name)}</li>`).join('');
+  const icons = { gate: '⛩️', pole: '🚧', doc: '📝', beacon: '📡', guide: '🧭', sos: '🆘' };
+  $('#rules').innerHTML = s.rules.map(r => `<div class="rule"><div aria-hidden="true">${icons[r.icon] || '•'}</div><div><b>${esc(r.title)}</b><span>${esc(r.body)}</span></div></div>`).join('');
+  $('#bcLinks').innerHTML = s.links.filter(l => !l.primary).map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener"><span>${esc(l.label)}</span><span>↗</span></a>`).join('');
+  $('#bcCtas').innerHTML = `<h2>Go with a guide</h2><div class="sponsor">Partner links</div>` +
+    cta(CONFIG.LINKS.BC_TOUR_VIATOR, '🧭', 'Guided backcountry tour', 'Certified local guides · avalanche gear included', 'See tours', 'featured-bc') +
+    cta(CONFIG.LINKS.BC_TOUR_GYG, '🏔️', 'More BC & splitboard tours', 'Compare dates and group sizes', 'Compare');
+  renderSOS('#sosBC');
+}
+
+/* ---------- Mode switching + BC disclaimer ---------- */
+function setMode(mode) {
+  state.mode = mode;
+  $('#btnResort').setAttribute('aria-pressed', mode === 'resort');
+  $('#btnBC').setAttribute('aria-pressed', mode === 'bc');
+  $('#resortView').classList.toggle('hidden', mode !== 'resort');
+  $('#bcView').classList.toggle('hidden', mode !== 'bc');
+  store.set({ mode });
+  if (mode === 'bc' && state.norm) renderBC();
+  window.scrollTo({ top: 0 });
+}
+function requestBC() {
+  const accepted = store.get().bcAccepted === state.safety.disclaimerVersion;
+  if (accepted) return setMode('bc');
+  const dlg = $('#bcDialog');
+  const boxes = [...dlg.querySelectorAll('input[type=checkbox]')];
+  boxes.forEach(b => { b.checked = false; b.onchange = () => { $('#bcAccept').disabled = !boxes.every(x => x.checked); }; });
+  $('#bcAccept').disabled = true;
+  dlg.onclose = () => {
+    if (dlg.returnValue === 'accept') { store.set({ bcAccepted: state.safety.disclaimerVersion }); setMode('bc'); }
+  };
+  if (dlg.showModal) dlg.showModal(); else if (confirm('Backcountry Mode is weather data only, not an avalanche forecast. Continue?')) { store.set({ bcAccepted: state.safety.disclaimerVersion }); setMode('bc'); }
+}
+
+/* ---------- Boot ---------- */
+async function boot() {
+  $('#disclosure').textContent = CONFIG.AFFILIATE_DISCLOSURE;
+  $('#btnResort').onclick = () => setMode('resort');
+  $('#btnBC').onclick = requestBC;
+  try {
+    const [resorts, safety, shuttle] = await Promise.all([
+      getJSON(CONFIG.LOCAL_DATA_URL + 'resorts.json'), getJSON(CONFIG.LOCAL_DATA_URL + 'safety.json'), getData('shuttle.json')
+    ]);
+    state.resorts = resorts.resorts; state.safety = safety; state.shuttle = shuttle;
+    try { const l = await getData('lifts.json'); if ((Date.now() - new Date(l.fetched_at)) / 60000 < 90) state.lifts = l.resorts; } catch (e) {}
+    renderResortCtas(); renderShuttle(); renderSOS('#sosResort');
+
+    const wx = await loadWeather();
+    state.norm = Engine.normalize(wx.raw, state.resorts); state.fetchedAt = wx.at; state.source = wx.source;
+    const { day, ranked } = Engine.rankResorts(state.norm, state.resorts, state.lifts);
+    if (!ranked.length) throw new Error('No forecast hours for the ski window.');
+    renderStatus(day); renderStrip(ranked); renderPicks(ranked);
+    if (store.get().mode === 'bc' && store.get().bcAccepted === safety.disclaimerVersion) setMode('bc');
+  } catch (err) {
+    console.error(err);
+    $('#statusDay').textContent = 'Forecast unavailable';
+    $('#picks').innerHTML = `<div class="card error">We couldn't load the forecast right now. Check the official <a href="https://www.hakubavalley.com/en/" target="_blank" rel="noopener">Hakuba Valley lift &amp; weather page</a>, then try again in a few minutes.<br><small style="color:var(--ink-3)">${esc(err.message)}</small></div>`;
+  }
+}
+boot();
+</script>
+</body>
+</html>

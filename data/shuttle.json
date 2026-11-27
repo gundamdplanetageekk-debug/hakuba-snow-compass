@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "version": "2026-11-27",
+    "season": "2026-27",
+    "status": "structure-only",
+    "note": "Route structure and fares are from the 2025-26 season. 2026-27 timetables are picked up automatically by scripts/update_shuttle.py; until then the app shows routes and links to the official timetable.",
+    "needsReview": false,
+    "sources": []
+  },
+  "passNote": "A Hakuba Valley All-Mountain pass (season or day) lets you ride the Hakuba Valley Shuttle free on the day you ski.",
+  "systems": [
+    {
+      "id": "hv-shuttle", "name": "Hakuba Valley Shuttle", "kind": "inter-resort",
+      "connects": ["cortina", "norikura", "tsugaike", "iwatake", "happo", "hakuba47", "goryu", "sanosaka", "kashimayari", "jigatake"],
+      "fare": "¥800 adult / ¥400 child · online ticket only, no cash", "freeWithPass": true,
+      "lastSeasonPeriod": "2025-26: mid-Dec to late Mar (timetable changes in Dec and mid-Mar)",
+      "tips": ["Buses fill up on powder days — once full they skip stops.", "Mornings mostly run toward the resorts, afternoons back from them."],
+      "url": "https://www.hakubavalley.com/en/access_en/shuttlebus_en/"
+    },
+    {
+      "id": "night-bus", "name": "Hakuba Night Bus", "kind": "evening",
+      "connects": [], "fare": "See official page", "freeWithPass": false,
+      "lastSeasonPeriod": "Peak season only; the loop ended in early March in 2024-25",
+      "tips": ["Links accommodation areas with restaurants and bars after skiing."],
+      "url": "https://www.hakubavalley.com/en/access_en/shuttlebus_en/"
+    },
+    {
+      "id": "gurutto", "name": "Gurutto Bus (Omachi ⇄ Hakuba)", "kind": "regional",
+      "connects": ["jigatake", "kashimayari", "goryu", "happo", "iwatake"], "fare": "Free for everyone · no reservation", "freeWithPass": false,
+      "lastSeasonPeriod": "2025-26: 27 Dec – 23 Feb",
+      "tips": ["About 30 min from Omachi Onsenkyo to the Hakuba ski area."],
+      "url": "https://kanko-omachi.gr.jp/en/gurutto-bus"
+    },
+    {
+      "id": "goryu-47", "name": "Goryu & Hakuba47 Free Shuttle + Triangle Bus", "kind": "resort",
+      "connects": ["goryu", "hakuba47"], "fare": "Free for everyone", "freeWithPass": false,
+      "lastSeasonPeriod": "2025-26: 13 Dec – 31 Mar",
+      "tips": ["Triangle Bus links Goryu, Iimori and Hakuba47 bases."],
+      "url": "https://hakubaescal.com/winter-en/access/"
+    },
+    {
+      "id": "happo-iwatake-tsugaike", "name": "Happo · Iwatake · Tsugaike Free Shuttle", "kind": "resort",
+      "connects": ["happo", "iwatake", "tsugaike"], "fare": "Free for everyone", "freeWithPass": false,
+      "lastSeasonPeriod": "Winter season",
+      "tips": ["Hub: Hakuba Happo Bus Terminal."],
+      "url": "https://www.hakubavalley.com/en/access_en/shuttlebus_en/"
+    }
+  ],
+  "timetable": []
+}

@@ -105,11 +105,14 @@ def main():
     acc = res["data"]["viewer"]["accounts"][0]
 
     if not acc["byDay"]:
-        # Diagnostics: which hosts does this account see at all?
-        dbg = post(token, {"query": """query($acct: String!, $start: Time!, $end: Time!) { viewer { accounts(filter: {accountTag: $acct}) {
-              rumPageloadEventsAdaptiveGroups(limit: 20, filter: {datetime_geq: $start, datetime_lt: $end}, orderBy: [count_DESC]) { count dimensions { requestHost siteTag } } } } }""",
-              "variables": {"acct": acct, "start": start.isoformat().replace("+00:00", "Z"), "end": end.isoformat().replace("+00:00", "Z")}})
-        print("no rows for host; account sees:", json.dumps(dbg)[:800])
+        # Diagnostics: last 24 h for this site, with and without the account filter's id prefix shown.
+        s24 = (end - dt.timedelta(hours=24)).isoformat().replace("+00:00", "Z")
+        q = """query($acct: String!, $start: Time!, $end: Time!, $site: String!) { viewer { accounts(filter: {accountTag: $acct}) {
+              a: rumPageloadEventsAdaptiveGroups(limit: 5, filter: {datetime_geq: $start, datetime_leq: $end, siteTag: $site}) { count dimensions { date } }
+              b: rumPerformanceEventsAdaptiveGroups(limit: 5, filter: {datetime_geq: $start, datetime_leq: $end, siteTag: $site}) { count }
+            } } }"""
+        dbg = post(token, {"query": q, "variables": {"acct": acct, "site": site, "start": s24, "end": end.isoformat().replace("+00:00", "Z")}})
+        print("diag acct", acct[:6], "site", site[:6], json.dumps(dbg)[:900])
 
     clicks = {}
     for g in acc["clicksByDay"]:

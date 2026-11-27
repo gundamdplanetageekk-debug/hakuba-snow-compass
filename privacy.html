@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Hakuba Snow Compass</title>
+<meta name="description" content="How Hakuba Snow Compass handles your data.">
+<meta name="theme-color" content="#0b1622">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 26 12 9l5 8 3-4 10 13z' fill='%237dd3fc'/%3E%3C/svg%3E">
+<style>
+  :root { --bg:#0b1622; --panel:#122233; --line:#24425f; --ink:#f1f7fc; --ink-2:#a9c1d6; --ink-3:#6f8ca5; --ice:#7dd3fc; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  .wrap { max-width:680px; margin:0 auto; padding:24px 18px 56px; }
+  a { color:var(--ice); }
+  .back { display:inline-flex; align-items:center; gap:6px; min-height:44px; text-decoration:none; font-weight:600; }
+  h1 { font-size:28px; letter-spacing:-.01em; margin:12px 0 4px; }
+  .sub { color:var(--ink-3); font-size:14px; margin:0 0 24px; }
+  h2 { font-size:18px; margin:28px 0 8px; }
+  p, li { color:var(--ink-2); }
+  ul { padding-left:20px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:16px 18px; margin:16px 0; }
+  .mail { font-size:18px; font-weight:700; word-break:break-all; }
+  footer { border-top:1px solid var(--line); margin-top:40px; padding-top:16px; font-size:13px; color:var(--ink-3); }
+  footer a { color:var(--ink-2); margin-right:14px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+<a class="back" href="./">← Back to Hakuba Snow Compass</a>
+
+<h1>Privacy Policy</h1>
+<p class="sub">Last updated: 27 November 2026</p>
+
+<p>Short version: we don't ask for your name, we don't run accounts, and we don't sell data.</p>
+
+<h2>What we collect</h2>
+<ul>
+  <li><b>Nothing you type.</b> The app has no sign-up, login or forms.</li>
+  <li><b>Settings on your device.</b> Your chosen mode and your Backcountry Mode acknowledgement are saved in your browser's local storage so you don't have to repeat them. This stays on your device and you can clear it at any time in your browser settings.</li>
+  <li><b>Server logs.</b> Our hosting provider, Cloudflare, processes standard technical data such as IP address, browser type and the pages requested, in order to deliver and protect the site.</li>
+</ul>
+
+<h2>Third-party services</h2>
+<ul>
+  <li><b>Weather and data files.</b> Your browser may load forecast data from Open-Meteo and data files from GitHub. Like any web request, these services can see your IP address.</li>
+  <li><b>Booking partners.</b> When you click a partner link (for example Viator, Klook or GetYourGuide), you leave our site. The partner may set cookies to record that you came from us, so we can be credited for a booking. Their own privacy policies apply on their sites.</li>
+  <li><b>Email.</b> If you email us, we use your address and message only to reply to you.</li>
+</ul>
+
+<h2>Analytics and advertising</h2>
+<p>We do not currently use analytics, advertising or tracking cookies on this site. If that changes, we will update this page first.</p>
+
+<h2>Children</h2>
+<p>The site is intended for a general travel audience and does not knowingly collect information from children.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy or a request about your data:</p>
+<a class="mail" data-mail data-subject="Privacy question" href="contact.html">contact.hakubasnow [at] gmail.com</a>
+<footer>
+  <a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a>
+  <p>© 2026 Hakuba Snow Compass. Independent and not affiliated with Hakuba Valley, the resorts, or the Japan Avalanche Network.</p>
+</footer>
+</main>
+<script>
+// Assemble the address in the browser so simple scrapers don't harvest it from the HTML.
+document.querySelectorAll('[data-mail]').forEach(function (el) {
+  var a = ['contact.hakubasnow', 'gmail.com'].join('@');
+  el.textContent = a; if (el.tagName === 'A') el.href = 'mai' + 'lto:' + a + (el.dataset.subject ? '?subject=' + encodeURIComponent(el.dataset.subject) : '');
+});
+</script>
+</body>
+</html>

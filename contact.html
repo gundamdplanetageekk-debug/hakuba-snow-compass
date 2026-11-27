@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Hakuba Snow Compass</title>
+<meta name="description" content="Contact Hakuba Snow Compass.">
+<meta name="theme-color" content="#0b1622">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 26 12 9l5 8 3-4 10 13z' fill='%237dd3fc'/%3E%3C/svg%3E">
+<style>
+  :root { --bg:#0b1622; --panel:#122233; --line:#24425f; --ink:#f1f7fc; --ink-2:#a9c1d6; --ink-3:#6f8ca5; --ice:#7dd3fc; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  .wrap { max-width:680px; margin:0 auto; padding:24px 18px 56px; }
+  a { color:var(--ice); }
+  .back { display:inline-flex; align-items:center; gap:6px; min-height:44px; text-decoration:none; font-weight:600; }
+  h1 { font-size:28px; letter-spacing:-.01em; margin:12px 0 4px; }
+  .sub { color:var(--ink-3); font-size:14px; margin:0 0 24px; }
+  h2 { font-size:18px; margin:28px 0 8px; }
+  p, li { color:var(--ink-2); }
+  ul { padding-left:20px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:16px 18px; margin:16px 0; }
+  .mail { font-size:18px; font-weight:700; word-break:break-all; }
+  footer { border-top:1px solid var(--line); margin-top:40px; padding-top:16px; font-size:13px; color:var(--ink-3); }
+  footer a { color:var(--ink-2); margin-right:14px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+<a class="back" href="./">← Back to Hakuba Snow Compass</a>
+
+<h1>Contact</h1>
+<p class="sub">We usually reply within 2–3 days.</p>
+
+<div class="card">
+<a class="mail" data-mail data-subject="Hakuba Snow Compass" href="contact.html">contact.hakubasnow [at] gmail.com</a>
+</div>
+
+<h2>Good reasons to write</h2>
+<ul>
+  <li>Something in the app is wrong or out of date, such as a lift, a shuttle time or a rule.</li>
+  <li>An idea that would make your Hakuba trip easier.</li>
+  <li>Partnerships with tour operators, guides, rental shops and accommodation.</li>
+</ul>
+
+<h2>Not for emergencies</h2>
+<p>We can't help in an emergency. In Japan call <a href="tel:110">110</a> (police) or <a href="tel:119">119</a> (fire and ambulance). For lift tickets, bookings or lost property, contact the resort or the booking partner directly.</p>
+
+<footer>
+  <a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a>
+  <p>© 2026 Hakuba Snow Compass. Independent and not affiliated with Hakuba Valley, the resorts, or the Japan Avalanche Network.</p>
+</footer>
+</main>
+<script>
+// Assemble the address in the browser so simple scrapers don't harvest it from the HTML.
+document.querySelectorAll('[data-mail]').forEach(function (el) {
+  var a = ['contact.hakubasnow', 'gmail.com'].join('@');
+  el.textContent = a; if (el.tagName === 'A') el.href = 'mai' + 'lto:' + a + (el.dataset.subject ? '?subject=' + encodeURIComponent(el.dataset.subject) : '');
+});
+</script>
+</body>
+</html>

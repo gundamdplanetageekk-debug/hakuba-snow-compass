@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Hakuba Snow Compass</title>
+<meta name="description" content="What Hakuba Snow Compass is, who runs it, and how it makes money.">
+<meta name="theme-color" content="#0b1622">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 26 12 9l5 8 3-4 10 13z' fill='%237dd3fc'/%3E%3C/svg%3E">
+<style>
+  :root { --bg:#0b1622; --panel:#122233; --line:#24425f; --ink:#f1f7fc; --ink-2:#a9c1d6; --ink-3:#6f8ca5; --ice:#7dd3fc; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  .wrap { max-width:680px; margin:0 auto; padding:24px 18px 56px; }
+  a { color:var(--ice); }
+  .back { display:inline-flex; align-items:center; gap:6px; min-height:44px; text-decoration:none; font-weight:600; }
+  h1 { font-size:28px; letter-spacing:-.01em; margin:12px 0 4px; }
+  .sub { color:var(--ink-3); font-size:14px; margin:0 0 24px; }
+  h2 { font-size:18px; margin:28px 0 8px; }
+  p, li { color:var(--ink-2); }
+  ul { padding-left:20px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:16px 18px; margin:16px 0; }
+  .mail { font-size:18px; font-weight:700; word-break:break-all; }
+  footer { border-top:1px solid var(--line); margin-top:40px; padding-top:16px; font-size:13px; color:var(--ink-3); }
+  footer a { color:var(--ink-2); margin-right:14px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+<a class="back" href="./">← Back to Hakuba Snow Compass</a>
+
+<h1>About</h1>
+<p class="sub">Hakuba Snow Compass · Hakuba Valley, Nagano, Japan</p>
+
+<p>Hakuba Snow Compass is a free, mobile-first web app for skiers and snowboarders visiting Hakuba Valley. Every morning it answers one question: <b>which of the valley's 10 resorts is the best bet today?</b></p>
+
+<h2>How it works</h2>
+<ul>
+  <li><b>Live forecasts.</b> Wind, gusts, snowfall, temperature and freezing level are fetched every hour for the summit and base of each resort.</li>
+  <li><b>Terrain profiles.</b> Each resort has a profile: vertical, aspect, tree cover, wind exposure and how much snow it usually catches.</li>
+  <li><b>Lift status.</b> Live lift operations are checked during the day, so a closed mountain drops down the list.</li>
+  <li><b>Backcountry Mode.</b> Wind by elevation, weather red flags, gate rules and direct links to the Japan Avalanche Network bulletin. It is weather data only, never an avalanche forecast.</li>
+</ul>
+
+<h2>Who runs it</h2>
+<p>An independent developer based in Japan who wants first-time visitors to spend less time guessing and more time skiing. The app is not affiliated with Hakuba Valley, any resort, or the Japan Avalanche Network.</p>
+
+<h2>How we keep it free</h2>
+<p>Some links in the app go to booking partners for tours, gear rentals and airport transfers. If you book through them we may earn a commission, at no extra cost to you. Partners never pay for a better ranking. The resort scores come from the forecast and terrain data alone.</p>
+
+<h2>Data sources</h2>
+<p>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (CC BY 4.0). Lift and shuttle information from official Hakuba Valley sources. Rankings are automated estimates. Always check official lift status before you travel.</p>
+
+<div class="card">Questions, corrections or partnership ideas? <a href="contact.html">Get in touch</a>.</div>
+
+<footer>
+  <a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a>
+  <p>© 2026 Hakuba Snow Compass. Independent and not affiliated with Hakuba Valley, the resorts, or the Japan Avalanche Network.</p>
+</footer>
+</main>
+<script>
+// Assemble the address in the browser so simple scrapers don't harvest it from the HTML.
+document.querySelectorAll('[data-mail]').forEach(function (el) {
+  var a = ['contact.hakubasnow', 'gmail.com'].join('@');
+  el.textContent = a; if (el.tagName === 'A') el.href = 'mai' + 'lto:' + a + (el.dataset.subject ? '?subject=' + encodeURIComponent(el.dataset.subject) : '');
+});
+</script>
+</body>
+</html>

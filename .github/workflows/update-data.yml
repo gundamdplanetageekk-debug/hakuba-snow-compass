@@ -7,10 +7,11 @@ on:
   schedule:
     - cron: "17 * * * *"   # hourly: weather (+ lift status during JST 06:00-17:59)
     - cron: "40 18 * * *"  # daily 03:40 JST: shuttle timetable watcher
+    - cron: "23 19 * * *"  # daily 04:23 JST: site analytics (Cloudflare Web Analytics)
   workflow_dispatch:
     inputs:
       task:
-        description: "weather | lifts | shuttle | all"
+        description: "weather | lifts | shuttle | analytics | all"
         default: "all"
 
 permissions:
@@ -37,17 +38,19 @@ jobs:
         run: |
           TASK="${{ github.event.inputs.task || 'auto' }}"
           HOUR_JST=$(TZ=Asia/Tokyo date +%H)
-          W=false; L=false; S=false
-          if [ "$TASK" = "all" ]; then W=true; L=true; S=true
+          W=false; L=false; S=false; A=false
+          if [ "$TASK" = "all" ]; then W=true; L=true; S=true; A=true
           elif [ "$TASK" = "weather" ]; then W=true
           elif [ "$TASK" = "lifts" ]; then L=true
           elif [ "$TASK" = "shuttle" ]; then S=true
+          elif [ "$TASK" = "analytics" ]; then A=true
           elif [ "${{ github.event.schedule }}" = "40 18 * * *" ]; then S=true
+          elif [ "${{ github.event.schedule }}" = "23 19 * * *" ]; then A=true
           else
             W=true
             if [ "$HOUR_JST" -ge 6 ] && [ "$HOUR_JST" -le 17 ]; then L=true; fi
           fi
-          echo "weather=$W" >> "$GITHUB_OUTPUT"; echo "lifts=$L" >> "$GITHUB_OUTPUT"; echo "shuttle=$S" >> "$GITHUB_OUTPUT"
+          echo "weather=$W" >> "$GITHUB_OUTPUT"; echo "lifts=$L" >> "$GITHUB_OUTPUT"; echo "shuttle=$S" >> "$GITHUB_OUTPUT"; echo "analytics=$A" >> "$GITHUB_OUTPUT"
 
       - name: Check out (or create) the data branch
         run: |
@@ -79,6 +82,14 @@ jobs:
         run: |
           pip install --quiet pdfplumber==0.11.4
           python scripts/update_shuttle.py --shuttle _data/shuttle.json
+
+      - name: Site analytics (Cloudflare Web Analytics, aggregate counts only)
+        if: steps.t.outputs.analytics == 'true'
+        continue-on-error: true
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        run: python scripts/fetch_analytics.py --out _data
 
       - name: Commit data branch
         run: |

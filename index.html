@@ -412,7 +412,10 @@ function renderStrip(ranked) {
 function renderSOS(sel) {
   $(sel).innerHTML = state.safety.emergency.map(e => `<a href="tel:${e.number.replace(/[^0-9+]/g, '')}"><span>${esc(e.label)}</span><b>${esc(e.number)}</b></a>`).join('');
 }
-const cta = (href, icon, title, sub, go, cls) => `<a class="card cta ${cls || ''}" href="${esc(href)}" target="_blank" rel="sponsored noopener"><div class="ic" aria-hidden="true">${icon}</div><div><b>${esc(title)}</b><span>${esc(sub)}</span></div><div class="go">${esc(go)} →</div></a>`;
+// Outbound links go through /go/<name>.html so Cloudflare Web Analytics can count clicks per offer.
+const GO_SLUG = { GEAR_RENTAL: 'gear', AIRPORT_TRANSFER: 'transfer', BC_TOUR_VIATOR: 'bc-viator', BC_TOUR_GYG: 'bc-gyg', GUMROAD_GUIDE: 'guide' };
+const goHref = (href) => { const k = Object.keys(CONFIG.LINKS).find(n => CONFIG.LINKS[n] === href); return k && GO_SLUG[k] ? `/go/${GO_SLUG[k]}.html?u=${encodeURIComponent(href)}` : href; };
+const cta = (href, icon, title, sub, go, cls) => `<a class="card cta ${cls || ''}" href="${esc(goHref(href))}" target="_blank" rel="sponsored noopener"><div class="ic" aria-hidden="true">${icon}</div><div><b>${esc(title)}</b><span>${esc(sub)}</span></div><div class="go">${esc(go)} →</div></a>`;
 
 /* ---------- Render: Resort Mode ---------- */
 function renderPicks(ranked) {

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Opening airport transfer…</title>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b1622;color:#a9c1d6;font:16px system-ui,sans-serif}a{color:#7dd3fc}</style>
+</head><body><p id="m">Opening airport transfer… <a id="l" href="/">Continue</a></p>
+<script>
+(function () {
+  // Only known partner sites; anything else falls back to the app.
+  var ok = /^(?:[a-z0-9-]+\.)*(?:klook\.com|viator\.com|getyourguide\.com|gumroad\.com|amazon\.[a-z.]+)$/i;
+  var t = '/';
+  try { var u = new URL(new URLSearchParams(location.search).get('u') || '');
+        if (u.protocol === 'https:' && ok.test(u.hostname)) t = u.href; } catch (e) {}
+  document.getElementById('l').href = t;
+  setTimeout(function () { location.replace(t); }, 400);
+})();
+</script>
+</body></html>

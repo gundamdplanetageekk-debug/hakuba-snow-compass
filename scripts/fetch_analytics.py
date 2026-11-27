@@ -17,19 +17,19 @@ API = "https://api.cloudflare.com/client/v4/graphql"
 HOST = "hakuba-snow-compass.pages.dev"
 
 QUERY = """
-query($acct: String!, $start: Time!, $end: Time!, $host: String!) {
+query($acct: String!, $start: Time!, $end: Time!, $site: String!) {
   viewer { accounts(filter: {accountTag: $acct}) {
-    byDay: rumPageloadEventsAdaptiveGroups(limit: 100, filter: {datetime_geq: $start, datetime_lt: $end, requestHost: $host}, orderBy: [date_ASC]) {
+    byDay: rumPageloadEventsAdaptiveGroups(limit: 100, filter: {datetime_geq: $start, datetime_lt: $end, siteTag: $site}, orderBy: [date_ASC]) {
       count sum { visits } dimensions { date } }
-    byPath: rumPageloadEventsAdaptiveGroups(limit: 50, filter: {datetime_geq: $start, datetime_lt: $end, requestHost: $host}, orderBy: [count_DESC]) {
+    byPath: rumPageloadEventsAdaptiveGroups(limit: 50, filter: {datetime_geq: $start, datetime_lt: $end, siteTag: $site}, orderBy: [count_DESC]) {
       count sum { visits } dimensions { requestPath } }
-    byReferer: rumPageloadEventsAdaptiveGroups(limit: 25, filter: {datetime_geq: $start, datetime_lt: $end, requestHost: $host}, orderBy: [count_DESC]) {
+    byReferer: rumPageloadEventsAdaptiveGroups(limit: 25, filter: {datetime_geq: $start, datetime_lt: $end, siteTag: $site}, orderBy: [count_DESC]) {
       count sum { visits } dimensions { refererHost } }
-    byCountry: rumPageloadEventsAdaptiveGroups(limit: 25, filter: {datetime_geq: $start, datetime_lt: $end, requestHost: $host}, orderBy: [count_DESC]) {
+    byCountry: rumPageloadEventsAdaptiveGroups(limit: 25, filter: {datetime_geq: $start, datetime_lt: $end, siteTag: $site}, orderBy: [count_DESC]) {
       count sum { visits } dimensions { countryName } }
-    byDevice: rumPageloadEventsAdaptiveGroups(limit: 10, filter: {datetime_geq: $start, datetime_lt: $end, requestHost: $host}, orderBy: [count_DESC]) {
+    byDevice: rumPageloadEventsAdaptiveGroups(limit: 10, filter: {datetime_geq: $start, datetime_lt: $end, siteTag: $site}, orderBy: [count_DESC]) {
       count sum { visits } dimensions { deviceType } }
-    clicksByDay: rumPageloadEventsAdaptiveGroups(limit: 500, filter: {datetime_geq: $start, datetime_lt: $end, requestHost: $host, requestPath_like: "/go/%"}, orderBy: [date_ASC]) {
+    clicksByDay: rumPageloadEventsAdaptiveGroups(limit: 500, filter: {datetime_geq: $start, datetime_lt: $end, siteTag: $site, requestPath_like: "/go/%"}, orderBy: [date_ASC]) {
       count dimensions { date requestPath } }
   } }
 }
@@ -50,6 +50,24 @@ def post(token, payload):
     raise last
 
 
+def find_site_tag(token, acct):
+    """Look up the Web Analytics site tag for HOST (REST: /accounts/{id}/rum/site_info/list)."""
+    url = f"https://api.cloudflare.com/client/v4/accounts/{acct}/rum/site_info/list?per_page=100"
+    req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            data = json.load(r)
+    except Exception as e:
+        print("site list failed:", e)
+        return None
+    sites = data.get("result") or []
+    print("web analytics sites:", [(x.get("host"), x.get("site_tag")) for x in sites])
+    for x in sites:
+        if (x.get("host") or "").lower() in (HOST, "hakuba-snow-compass.pages.dev"):
+            return x.get("site_tag")
+    return sites[0].get("site_tag") if len(sites) == 1 else None
+
+
 def rows(groups, dim):
     return [{"key": g["dimensions"].get(dim) or "(none)", "views": g["count"], "visits": (g.get("sum") or {}).get("visits")} for g in groups]
 
@@ -66,7 +84,11 @@ def main():
 
     end = dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
     start = end - dt.timedelta(days=a.days)
-    res = post(token, {"query": QUERY, "variables": {"acct": acct, "host": HOST,
+    site = os.environ.get("CF_SITE_TAG") or find_site_tag(token, acct)
+    if not site:
+        print("No Web Analytics site found for", HOST)
+        return 1
+    res = post(token, {"query": QUERY, "variables": {"acct": acct, "site": site,
                                                      "start": start.isoformat().replace("+00:00", "Z"),
                                                      "end": end.isoformat().replace("+00:00", "Z")}})
     if res.get("errors"):

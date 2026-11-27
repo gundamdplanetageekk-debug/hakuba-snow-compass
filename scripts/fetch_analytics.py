@@ -107,11 +107,14 @@ def main():
     if not acc["byDay"]:
         # Diagnostics: last 24 h for this site, with and without the account filter's id prefix shown.
         s24 = (end - dt.timedelta(hours=24)).isoformat().replace("+00:00", "Z")
-        q = """query($acct: String!, $start: Time!, $end: Time!, $site: String!) { viewer { accounts(filter: {accountTag: $acct}) {
+        q = """query($acct: String!, $start: Time!, $end: Time!, $site: String!, $s30: Time!, $s7: Time!) { viewer { accounts(filter: {accountTag: $acct}) {
               a: rumPageloadEventsAdaptiveGroups(limit: 5, filter: {datetime_geq: $start, datetime_leq: $end, siteTag: $site}) { count dimensions { date } }
-              b: rumPerformanceEventsAdaptiveGroups(limit: 5, filter: {datetime_geq: $start, datetime_leq: $end, siteTag: $site}) { count }
+              b: rumPageloadEventsAdaptiveGroups(limit: 5, filter: {datetime_geq: $start, datetime_leq: $end, siteTag: $site}, orderBy: [date_ASC]) { count sum { visits } dimensions { date } }
+              c: rumPageloadEventsAdaptiveGroups(limit: 5, filter: {datetime_geq: $s30, datetime_leq: $end, siteTag: $site}) { count dimensions { date } }
+              d: rumPageloadEventsAdaptiveGroups(limit: 5, filter: {datetime_geq: $s7, datetime_leq: $end, siteTag: $site}) { count dimensions { date } }
             } } }"""
-        dbg = post(token, {"query": q, "variables": {"acct": acct, "site": site, "start": s24, "end": end.isoformat().replace("+00:00", "Z")}})
+        dbg = post(token, {"query": q, "variables": {"acct": acct, "site": site, "start": s24, "end": end.isoformat().replace("+00:00", "Z"),
+                     "s30": start.isoformat().replace("+00:00", "Z"), "s7": (end - dt.timedelta(days=7)).isoformat().replace("+00:00", "Z")}})
         print("diag acct", acct[:6], "site", site[:6], json.dumps(dbg)[:900])
 
     clicks = {}

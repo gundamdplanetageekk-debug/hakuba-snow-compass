@@ -285,6 +285,12 @@
     <div class="card sos" id="sosBC"></div>
   </section>
 
+  <section id="share" aria-labelledby="guidesTitle">
+    <h2 id="guidesTitle">Plan your trip</h2>
+    <div class="card"><p style="margin:0 0 8px"><a href="guides/best-hakuba-resort-by-conditions.html">Which resort today? Best picks by conditions</a></p><p style="margin:0 0 8px"><a href="guides/tokyo-to-hakuba.html">Tokyo, Narita &amp; Haneda to Hakuba</a></p><p style="margin:0"><a href="guides/hakuba-shuttle-bus.html">Hakuba shuttle buses, taxis &amp; driving</a></p></div>
+    <button type="button" id="shareBtn" class="card cta" style="width:100%;text-align:left;cursor:pointer;font:inherit;color:inherit"><div class="ic" aria-hidden="true">📣</div><div><b>Skiing Hakuba with friends?</b><span>Send them today's ranking</span></div><div class="go">Share →</div></button>
+  </section>
+
   <section id="faq" aria-labelledby="faqTitle">
     <h2 id="faqTitle">Hakuba ski FAQ</h2>
     <details class="card bus"><summary><div><b>Which Hakuba resort is best on a windy day?</b></div></summary><div class="bus-body"><p style="margin:0">Lower, tree-lined resorts usually keep running when the big alpine lifts stop. Hakuba47, Iwatake, Norikura and Cortina are the usual windy-day picks. Upper lifts at Happo-one, Goryu and Tsugaike are the first to go on wind hold.</p></div></details>
@@ -558,6 +564,19 @@ async function boot() {
   }
 }
 boot();
+/* ---------- Share (word of mouth) ---------- */
+(function () {
+  const b = document.getElementById('shareBtn'); if (!b) return;
+  const url = 'https://hakuba-snow-compass.pages.dev/?src=share';
+  const text = 'Free app that ranks all 10 Hakuba resorts every hour on snow, wind and lift status:';
+  b.addEventListener('click', async () => {
+    try {
+      if (navigator.share) { await navigator.share({ title: 'Hakuba Snow Compass', text, url }); return; }
+      await navigator.clipboard.writeText(text + ' ' + url);
+      b.querySelector('span').textContent = 'Link copied — paste it in your group chat';
+    } catch (e) { /* user cancelled */ }
+  });
+})();
 </script>
 </body>
 </html>

@@ -6,6 +6,16 @@
 <title>Hakuba Snow Compass — Where to ski in Hakuba today</title>
 <meta name="description" content="Live wind, snow and freezing level for all 10 Hakuba Valley resorts, ranked for today. Backcountry gates, JAN avalanche links and shuttle info in one screen.">
 <meta name="theme-color" content="#0b1622">
+<link rel="canonical" href="https://hakuba-snow-compass.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hakuba Snow Compass">
+<meta property="og:title" content="Hakuba Snow Compass — Where to ski in Hakuba today">
+<meta property="og:description" content="All 10 Hakuba Valley resorts ranked every morning from live wind, snow and freezing level. Free, no sign-up.">
+<meta property="og:url" content="https://hakuba-snow-compass.pages.dev/">
+<meta property="og:image" content="https://hakuba-snow-compass.pages.dev/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 26 12 9l5 8 3-4 10 13z' fill='%237dd3fc'/%3E%3C/svg%3E">
 <style>
   :root {
@@ -141,6 +151,71 @@
   :focus-visible { outline: 3px solid var(--ice); outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) { .skeleton { animation: none; } }
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "Hakuba Snow Compass",
+   "url": "https://hakuba-snow-compass.pages.dev/",
+   "applicationCategory": "TravelApplication",
+   "operatingSystem": "Any (web)",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "description": "Ranks all 10 Hakuba Valley ski resorts every morning from live wind, snow and freezing-level forecasts, with backcountry gates, avalanche bulletin links and shuttle info."
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Which Hakuba resort is best on a windy day?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Lower, tree-lined resorts usually keep running when the big alpine lifts stop. Hakuba47, Iwatake, Norikura and Cortina are the usual windy-day picks. Upper lifts at Happo-one, Goryu and Tsugaike are the first to go on wind hold."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where does Hakuba get the most snow?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The north end of the valley. Cortina, Norikura and Tsugaike often get noticeably more snow than the central resorts, so they are the busiest on powder days. The south end, Kashimayari and Jiigatake, gets less snow but it is often drier."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I ski the backcountry from Hakuba resorts?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Only through designated backcountry gates. Hakuba Valley lists gates at Able Hakuba Goryu, Happo-one, Tsugaike, Hakuba Norikura and Hakuba Cortina. Leaving the boundary anywhere else is not allowed. Read the Japan Avalanche Network bulletin, carry a beacon, shovel and probe, and submit a mountain itinerary before you go."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How do I get between Hakuba resorts without a car?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The Hakuba Valley Shuttle links all 10 resorts and is free on the day you ski with a Hakuba Valley pass. Resorts also run their own free shuttles, and the Gurutto Bus connects Omachi with Hakuba. Buses fill up on powder days, so leave early."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How is the daily ranking calculated?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Every hour we fetch forecasts for the summit and base of each resort, then score fresh snow, snow quality, wind and likely lift holds, visibility and live lift status against each resort's terrain profile. It is an automated estimate, so always check official lift status before you travel."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <header class="top">
@@ -207,6 +282,15 @@
 
     <h2>Emergency</h2>
     <div class="card sos" id="sosBC"></div>
+  </section>
+
+  <section id="faq" aria-labelledby="faqTitle">
+    <h2 id="faqTitle">Hakuba ski FAQ</h2>
+    <details class="card bus"><summary><div><b>Which Hakuba resort is best on a windy day?</b></div></summary><div class="bus-body"><p style="margin:0">Lower, tree-lined resorts usually keep running when the big alpine lifts stop. Hakuba47, Iwatake, Norikura and Cortina are the usual windy-day picks. Upper lifts at Happo-one, Goryu and Tsugaike are the first to go on wind hold.</p></div></details>
+    <details class="card bus"><summary><div><b>Where does Hakuba get the most snow?</b></div></summary><div class="bus-body"><p style="margin:0">The north end of the valley. Cortina, Norikura and Tsugaike often get noticeably more snow than the central resorts, so they are the busiest on powder days. The south end, Kashimayari and Jiigatake, gets less snow but it is often drier.</p></div></details>
+    <details class="card bus"><summary><div><b>Can I ski the backcountry from Hakuba resorts?</b></div></summary><div class="bus-body"><p style="margin:0">Only through designated backcountry gates. Hakuba Valley lists gates at Able Hakuba Goryu, Happo-one, Tsugaike, Hakuba Norikura and Hakuba Cortina. Leaving the boundary anywhere else is not allowed. Read the Japan Avalanche Network bulletin, carry a beacon, shovel and probe, and submit a mountain itinerary before you go.</p></div></details>
+    <details class="card bus"><summary><div><b>How do I get between Hakuba resorts without a car?</b></div></summary><div class="bus-body"><p style="margin:0">The Hakuba Valley Shuttle links all 10 resorts and is free on the day you ski with a Hakuba Valley pass. Resorts also run their own free shuttles, and the Gurutto Bus connects Omachi with Hakuba. Buses fill up on powder days, so leave early.</p></div></details>
+    <details class="card bus"><summary><div><b>How is the daily ranking calculated?</b></div></summary><div class="bus-body"><p style="margin:0">Every hour we fetch forecasts for the summit and base of each resort, then score fresh snow, snow quality, wind and likely lift holds, visibility and live lift status against each resort's terrain profile. It is an automated estimate, so always check official lift status before you travel.</p></div></details>
   </section>
 
   <footer>

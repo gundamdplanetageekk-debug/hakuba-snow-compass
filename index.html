@@ -288,7 +288,7 @@
 
   <section id="share" aria-labelledby="guidesTitle">
     <h2 id="guidesTitle">Plan your trip</h2>
-    <div class="card"><p style="margin:0 0 8px"><a href="guides/best-hakuba-resort-by-conditions.html">Which resort today? Best picks by conditions</a></p><p style="margin:0 0 8px"><a href="guides/tokyo-to-hakuba.html">Tokyo, Narita &amp; Haneda to Hakuba</a></p><p style="margin:0"><a href="guides/hakuba-shuttle-bus.html">Hakuba shuttle buses, taxis &amp; driving</a></p></div>
+    <div class="card"><p style="margin:0 0 8px"><a href="guides/best-hakuba-resort-by-conditions.html">Which resort today? Best picks by conditions</a></p><p style="margin:0 0 8px"><a href="guides/tokyo-to-hakuba.html">Tokyo, Narita &amp; Haneda to Hakuba</a></p><p style="margin:0 0 8px"><a href="guides/hakuba-rest-day.html">Rest day in Hakuba: 7 things to do off the slopes</a></p><p style="margin:0"><a href="guides/hakuba-shuttle-bus.html">Hakuba shuttle buses, taxis &amp; driving</a></p></div>
     <button type="button" id="shareBtn" class="card cta" style="width:100%;text-align:left;cursor:pointer;font:inherit;color:inherit"><div class="ic" aria-hidden="true">📣</div><div><b>Skiing Hakuba with friends?</b><span>Send them today's ranking</span></div><div class="go">Share →</div></button>
   </section>
 
@@ -463,7 +463,7 @@ function renderPicks(ranked) {
 function renderResortCtas() {
   // Rough-weather days (low best score): lead with a rest-day trip instead of gear.
   const stormy = state.best != null && state.best < 35;
-  const restDay = cta(CONFIG.LINKS.SNOW_MONKEY, '🐒', stormy ? 'Rough day on the hill? See the snow monkeys' : 'Rest day: snow monkeys & Zenko-ji', 'Day tour with pickup in Hakuba (winter)', 'See tour');
+  const restDay = `<a class="card cta" href="/guides/hakuba-rest-day.html"><div class="ic" aria-hidden="true">🐒</div><div><b>${stormy ? 'Rough day on the hill? Take a rest day' : 'Rest day ideas'}</b><span>Snow monkeys, onsen, Matsumoto Castle and more</span></div><div class="go">See ideas →</div></a>`;
   $('#resortCtas').innerHTML = `<h2>Sort your day</h2><div class="sponsor">Partner links</div>` + (stormy ? restDay : '') +
     cta(CONFIG.LINKS.GEAR_RENTAL, '🎿', 'Rent skis or a board', '5 shops across the valley · swap gear any day', 'Book', 'featured') +
     cta(CONFIG.LINKS.AIRPORT_TRANSFER, '🚌', 'Airport ⇄ Hakuba shuttle', 'Direct bus from Narita · Haneda · Tokyo', 'Book') +

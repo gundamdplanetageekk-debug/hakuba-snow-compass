@@ -48,6 +48,7 @@
   .status { display: flex; justify-content: space-between; gap: 8px; color: var(--ink-3); font-size: 12px; margin: 14px 2px 8px; }
   .status b { color: var(--ink-2); font-weight: 600; }
 
+  .units { background: none; border: 1px solid var(--line); color: var(--ink-2); border-radius: 999px; padding: 2px 10px; font: inherit; font-size: 12px; cursor: pointer; min-height: 28px; white-space: nowrap; flex: none; }
   .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; min-height: 61px; } /* reserve space: avoids layout shift (CLS) while data loads */
   .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 8px; text-align: center; }
   .stat .v { font-size: 19px; font-weight: 750; font-variant-numeric: tabular-nums; }
@@ -234,7 +235,7 @@
 </header>
 
 <main class="wrap">
-  <div class="status"><span id="statusDay">Loading forecast…</span><span id="statusUpdated"></span></div>
+  <div class="status"><span id="statusDay">Loading forecast…</span><span id="statusUpdated"></span><button type="button" id="unitsBtn" class="units" aria-label="Switch units"></button></div>
   <div class="strip" id="strip"></div>
 
   <!-- RESORT MODE -->
@@ -393,11 +394,19 @@ async function loadWeather() {
   return { raw: await getJSON(url), at: new Date(), source: 'live' };
 }
 
+// Units: metric by default; US visitors (en-US) get mph / °F / in / ft. The choice is remembered on this device.
+const US_UNITS = (() => { try { const p = localStorage.getItem('hsc-units'); if (p) return p === 'us'; } catch (e) {} return /^en-US/i.test(navigator.language || ''); })();
+const UL = US_UNITS ? { wind: 'mph', alt: 'ft' } : { wind: 'km/h', alt: 'm' };
+// Converts numbers inside engine-written text ("Gusts 60 km/h", "-8°C", "15 cm") when US units are on.
+const unitText = t => !US_UNITS ? t : String(t)
+  .replace(/(-?\d+(?:\.\d+)?) ?km\/h/g, (_, n) => Math.round(n * 0.621371) + ' mph')
+  .replace(/(-?\d+(?:\.\d+)?) ?°C/g, (_, n) => Math.round(n * 9 / 5 + 32) + '°F')
+  .replace(/(\d+(?:\.\d+)?) ?cm\b/g, (_, n) => Math.round(n / 2.54) + ' in');
 const fmt = {
-  t: v => v == null ? '—' : Math.round(v) + '°',
-  cm: v => v == null ? '—' : Math.round(v) + ' cm',
-  kmh: v => v == null ? '—' : Math.round(v),
-  m: v => v == null ? '—' : (Math.round(v / 50) * 50).toLocaleString('en-US') + ' m',
+  t: v => v == null ? '—' : Math.round(US_UNITS ? v * 9 / 5 + 32 : v) + '°',
+  cm: v => v == null ? '—' : US_UNITS ? Math.round(v / 2.54) + ' in' : Math.round(v) + ' cm',
+  kmh: v => v == null ? '—' : Math.round(US_UNITS ? v * 0.621371 : v),
+  m: v => v == null ? '—' : US_UNITS ? (Math.round(v * 3.28084 / 100) * 100).toLocaleString('en-US') + ' ft' : (Math.round(v / 50) * 50).toLocaleString('en-US') + ' m',
   time: d => d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Tokyo' }) + ' JST',
   date: s => new Date(s + 'T12:00:00+09:00').toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'Asia/Tokyo' })
 };
@@ -416,9 +425,9 @@ function renderStrip(ranked) {
   const w = ref.weather;
   $('#strip').innerHTML = [
     [fmt.cm(maxFresh), 'Fresh 24 h'],
-    [fmt.t(w.tempTop), 'Summit temp'],
-    [fmt.kmh(w.gustMax), 'Gust km/h'],
-    [w.freezing == null ? '—' : (Math.round(w.freezing / 100) / 10).toFixed(1) + 'k', 'Freezing m']
+    [fmt.t(w.tempTop), US_UNITS ? 'Summit °F' : 'Summit °C'],
+    [fmt.kmh(w.gustMax), 'Gust ' + UL.wind],
+    [w.freezing == null ? '—' : (Math.round((US_UNITS ? w.freezing * 3.28084 : w.freezing) / 100) / 10).toFixed(1) + 'k', 'Freezing ' + UL.alt]
   ].map(([v, k]) => `<div class="stat"><div class="v">${v}</div><div class="k">${k}</div></div>`).join('');
 }
 function renderSOS(sel) {
@@ -440,12 +449,12 @@ function renderPicks(ranked) {
       <div><h3>${esc(r.name)}<span class="ja">${esc(r.nameJa)}</span></h3></div>
       <div class="score"><div class="n">${x.score}</div><div class="l">score</div></div>
       <div class="bar"><i style="width:${x.score}%"></i></div>
-      <ul class="reasons">${reasons.map(t => `<li class="${t.good ? '' : 'bad'}">${esc(t.t)}</li>`).join('')}</ul>
+      <ul class="reasons">${reasons.map(t => `<li class="${t.good ? '' : 'bad'}">${esc(unitText(t.t))}</li>`).join('')}</ul>
       <div class="mini">
         <div><b>${fmt.cm((w.snow24 || 0) * r.snowBias)}</b>new</div>
-        <div><b>${fmt.t(w.tempTop)}</b>summit</div>
-        <div><b>${arrow(w.windDir)} ${fmt.kmh(w.gustMax)}</b>gust km/h</div>
-        <div><b>${x.skiableVert} m</b>vertical</div>
+        <div><b>${fmt.t(w.tempTop)}</b>summit ${US_UNITS ? '°F' : '°C'}</div>
+        <div><b>${arrow(w.windDir)} ${fmt.kmh(w.gustMax)}</b>gust ${UL.wind}</div>
+        <div><b>${US_UNITS ? Math.round(x.skiableVert * 3.28084 / 10) * 10 + ' ft' : x.skiableVert + ' m'}</b>vertical</div>
       </div>
       <div class="meta">
         ${r.bcGate ? '<span class="chip gate">BC gate</span>' : ''}
@@ -457,7 +466,7 @@ function renderPicks(ranked) {
   }).join('');
   $('#rest').innerHTML = rest.length ? `<div class="card rest">${rest.map((x, i) => `
     <div class="rest-row"><div class="r">${i + 4}</div>
-      <div><div class="nm">${esc(x.resort.name)}</div><div class="why">${esc((x.reasons[0] || { t: x.resort.tags[0] }).t)}</div></div>
+      <div><div class="nm">${esc(x.resort.name)}</div><div class="why">${esc(unitText((x.reasons[0] || { t: x.resort.tags[0] }).t))}</div></div>
       <div class="s">${x.score}</div></div>`).join('')}</div>` : '';
 }
 function renderResortCtas() {
@@ -515,12 +524,12 @@ function renderBC() {
     $('#bandsTitle').textContent = 'Wind by elevation · ' + (bc.day.isTomorrow ? 'tomorrow' : 'today') + ' 08–14h';
     $('#bands').innerHTML = `<tr><th>Band</th><th>Wind</th><th>From</th><th>Temp</th></tr>` + bc.bands.map(b => `
       <tr><td>${esc(b.label)}<small>${esc(b.elev)}</small></td>
-      <td><b>${fmt.kmh(b.wind)}</b>${b.gust != null ? ` <small>gust ${fmt.kmh(b.gust)}</small>` : '<small>km/h</small>'}</td>
+      <td><b>${fmt.kmh(b.wind)}</b>${b.gust != null ? ` <small>gust ${fmt.kmh(b.gust)}</small>` : `<small>${UL.wind}</small>`}</td>
       <td>${arrow(b.dir)} ${Engine.compass(b.dir)}</td><td>${fmt.t(b.temp)}</td></tr>`).join('') +
       `<tr><td>Freezing level</td><td colspan="3"><b>${fmt.m(bc.freezing)}</b></td></tr>
        <tr><td>New snow</td><td colspan="3"><b>${fmt.cm(bc.new24)}</b> / 24 h · <b>${fmt.cm(bc.new72)}</b> / 72 h <small>north &amp; central resort tops</small></td></tr>
        <tr><td>Lee aspects</td><td colspan="3"><b>${bc.leeAspects.join(' · ') || '—'}</b><small>where ridge winds deposit snow</small></td></tr>`;
-    $('#flags').innerHTML = bc.flags.map(f => `<div class="flag"><span class="dot ${f.level}"></span><span>${esc(f.t)}</span></div>`).join('');
+    $('#flags').innerHTML = bc.flags.map(f => `<div class="flag"><span class="dot ${f.level}"></span><span>${esc(unitText(f.t))}</span></div>`).join('');
   }
   $('#gateSummary').textContent = s.gates.summary;
   $('#gateSeason').textContent = s.gates.gateSeasonNote;
@@ -563,6 +572,8 @@ function requestBC() {
 async function boot() {
   $('#disclosure').textContent = CONFIG.AFFILIATE_DISCLOSURE;
   $('#btnResort').onclick = () => setMode('resort');
+  $('#unitsBtn').textContent = US_UNITS ? '°F · mph' : '°C · km/h';
+  $('#unitsBtn').onclick = () => { try { localStorage.setItem('hsc-units', US_UNITS ? 'metric' : 'us'); } catch (e) {} location.reload(); };
   $('#btnBC').onclick = requestBC;
   try {
     const [resorts, safety, shuttle] = await Promise.all([

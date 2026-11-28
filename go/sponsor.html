@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Opening local partner…</title>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b1622;color:#a9c1d6;font:16px system-ui,sans-serif}a{color:#7dd3fc}</style>
+</head><body><p id="m">Opening local partner… <a id="l" href="/">Continue</a></p>
+<script>
+(function () {
+  // The target comes only from /data/sponsors.json (looked up by ?s=<slug>), never from the URL, so this page can't be used as an open redirect.
+  var slug = new URLSearchParams(location.search).get('s') || '';
+  var link = document.getElementById('l');
+  function go(t) { link.href = t; setTimeout(function () { location.replace(t); }, 400); }
+  if (!/^[a-z0-9-]{1,40}$/.test(slug)) return go('/');
+  fetch('/data/sponsors.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+    var s = (d.sponsors || []).filter(function (x) { return x.slug === slug; })[0];
+    var t = '/';
+    try { if (s) { var u = new URL(s.url); if (u.protocol === 'https:') t = u.href; } } catch (e) {}
+    go(t);
+  }).catch(function () { go('/'); });
+})();
+</script>
+</body></html>

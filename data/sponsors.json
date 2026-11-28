@@ -1,0 +1,7 @@
+{
+  "_meta": {
+    "note": "Paid local listings shown in Resort Mode under a 'Sponsored' label. Sponsorship never changes resort scores or rankings. Add an entry only after payment is confirmed. 'until' is inclusive (YYYY-MM-DD); expired entries are hidden automatically.",
+    "fields": "slug (a-z0-9-), name, category, blurb (<=80 chars), url (https only), icon (one emoji), until"
+  },
+  "sponsors": []
+}

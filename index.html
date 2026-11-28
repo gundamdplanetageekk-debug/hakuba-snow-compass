@@ -439,7 +439,8 @@ const goHref = (href) => { const k = Object.keys(CONFIG.LINKS).find(n => CONFIG.
 const cta = (href, icon, title, sub, go, cls) => `<a class="card cta ${cls || ''}" href="${esc(goHref(href))}" target="_blank" rel="sponsored noopener"><div class="ic" aria-hidden="true">${icon}</div><div><b>${esc(title)}</b><span>${esc(sub)}</span></div><div class="go">${esc(go)} →</div></a>`;
 
 /* ---------- Render: Resort Mode ---------- */
-function renderPicks(ranked) {
+const fmtDay = d => new Date(d + 'T12:00:00+09:00').toLocaleDateString('en', { month: 'short', day: 'numeric', timeZone: 'Asia/Tokyo' });
+function renderPicks(ranked, closed) {
   const top = ranked.slice(0, 3), rest = ranked.slice(3);
   $('#picks').innerHTML = top.map((x, i) => {
     const r = x.resort, w = x.weather;
@@ -468,6 +469,11 @@ function renderPicks(ranked) {
     <div class="rest-row"><div class="r">${i + 4}</div>
       <div><div class="nm">${esc(x.resort.name)}</div><div class="why">${esc(unitText((x.reasons[0] || { t: x.resort.tags[0] }).t))}</div></div>
       <div class="s">${x.score}</div></div>`).join('')}</div>` : '';
+  // Resorts outside their season are listed, never ranked (a closed resort can't be "today's best").
+  if (closed && closed.length) $('#rest').innerHTML += `<h2 style="margin:18px 2px 8px;font-size:14px;color:var(--ink-2)">Not open yet</h2><div class="card rest">${closed.map(x => `
+    <div class="rest-row"><div class="r">–</div>
+      <div><div class="nm">${esc(x.resort.name)}</div><div class="why">${x.season.state === 'closed' ? 'Season ended ' + fmtDay(x.season.date) : 'Opens ' + fmtDay(x.season.date) + (x.season.planned ? ' (planned, snow permitting)' : '')}</div></div>
+      <div class="s" style="color:var(--ink-3)">—</div></div>`).join('')}</div>`;
 }
 function renderResortCtas() {
   // Rough-weather days (low best score): lead with a rest-day trip instead of gear.
@@ -586,10 +592,10 @@ async function boot() {
 
     const wx = await loadWeather();
     state.norm = Engine.normalize(wx.raw, state.resorts); state.fetchedAt = wx.at; state.source = wx.source;
-    const { day, ranked } = Engine.rankResorts(state.norm, state.resorts, state.lifts);
+    const { day, ranked, closed } = Engine.rankResorts(state.norm, state.resorts, state.lifts);
     if (!ranked.length) throw new Error('No forecast hours for the ski window.');
     state.best = ranked[0].score; renderResortCtas();
-    renderStatus(day); renderStrip(ranked); renderPicks(ranked);
+    renderStatus(day); renderStrip(ranked.concat(closed || [])); renderPicks(ranked, closed || []);
     if (store.get().mode === 'bc' && store.get().bcAccepted === safety.disclaimerVersion) setMode('bc');
   } catch (err) {
     console.error(err);

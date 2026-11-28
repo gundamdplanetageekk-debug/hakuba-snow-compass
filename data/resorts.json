@@ -2,6 +2,7 @@
   "_meta": {
     "version": "2026-11-27",
     "note": "Static terrain profile for the scoring algorithm. Elevations from resort/agency listings (Happo 1831/760, Goryu 1676/750, Hakuba47 1614/820, Cortina 1402 top/530 vert, Norikura 1300 top/600 vert). Coordinates are approximate (grid models are 2-11 km) and only need to land in the right model cell. Top/base elevations for all 10 resorts match the Hakuba Valley official resort info page (checked 2026-11-28). confidence:'approx' now refers to coordinates only.",
+    "season": "Planned opening/closing dates for 2026-27 (status opened = confirmed running). Before open or after close a resort is listed as not open instead of being ranked, unless live lift data shows lifts running. Checked 2026-11-28.",
     "scoring_fields": {
       "snowBias": "Orographic multiplier on model snowfall. North end (Otari) catches more Sea-of-Japan snow; south end (Omachi) gets less but drier snow.",
       "treeLevel": "0-3. In-bounds tree terrain that keeps visibility and shelter in storms.",
@@ -13,6 +14,7 @@
   "resorts": [
     {
       "id": "happo", "name": "Hakuba Happo-one", "nameJa": "白馬八方尾根", "area": "central",
+      "season": { "open": "2026-11-21", "close": "2027-05-05", "status": "opened" },
       "top": 1831, "base": 760, "fallbackTop": 1400,
       "coords": { "top": [36.6955, 137.8030], "base": [36.6985, 137.8330] },
       "aspect": "E", "treeLevel": 1, "windExposure": 5, "upperHoldGust": 55, "fullHoldGust": 80, "snowBias": 1.0,
@@ -24,6 +26,7 @@
     },
     {
       "id": "goryu", "name": "Able Hakuba Goryu", "nameJa": "エイブル白馬五竜", "area": "central",
+      "season": { "open": "2026-11-21", "close": "2027-05-05", "status": "opened" },
       "top": 1676, "base": 750, "fallbackTop": 1000,
       "coords": { "top": [36.6640, 137.8120], "base": [36.6630, 137.8380] },
       "aspect": "E", "treeLevel": 1, "windExposure": 4, "upperHoldGust": 60, "fullHoldGust": 80, "snowBias": 1.0,
@@ -35,6 +38,7 @@
     },
     {
       "id": "hakuba47", "name": "Hakuba47 Winter Sports Park", "nameJa": "Hakuba47", "area": "central",
+      "season": { "open": "2026-11-21", "close": "2027-05-05", "status": "opened" },
       "top": 1614, "base": 820, "fallbackTop": 1200,
       "coords": { "top": [36.6720, 137.8150], "base": [36.6735, 137.8330] },
       "aspect": "NE", "treeLevel": 3, "windExposure": 3, "upperHoldGust": 60, "fullHoldGust": 85, "snowBias": 1.0,
@@ -46,6 +50,7 @@
     },
     {
       "id": "iwatake", "name": "Hakuba Iwatake Mountain Resort", "nameJa": "白馬岩岳", "area": "central",
+      "season": { "open": "2026-12-18", "close": "2027-03-28", "status": "planned" },
       "top": 1289, "base": 750, "fallbackTop": 1289,
       "coords": { "top": [36.7130, 137.8700], "base": [36.7170, 137.8580] },
       "aspect": "W", "treeLevel": 2, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 85, "snowBias": 0.95,
@@ -57,6 +62,7 @@
     },
     {
       "id": "tsugaike", "name": "Tsugaike Mountain Resort", "nameJa": "栂池高原", "area": "north",
+      "season": { "open": "2026-12-01", "close": "2027-05-05", "status": "planned" },
       "top": 1704, "base": 800, "fallbackTop": 1200,
       "coords": { "top": [36.7700, 137.8100], "base": [36.7660, 137.8350] },
       "aspect": "E", "treeLevel": 2, "windExposure": 4, "upperHoldGust": 60, "fullHoldGust": 85, "snowBias": 1.15,
@@ -69,6 +75,7 @@
     },
     {
       "id": "norikura", "name": "Hakuba Norikura", "nameJa": "白馬乗鞍", "area": "north",
+      "season": { "open": "2026-12-12", "close": "2027-04-04", "status": "planned" },
       "top": 1598, "base": 800, "fallbackTop": 1300,
       "coords": { "top": [36.8080, 137.8450], "base": [36.8020, 137.8580] },
       "aspect": "NE", "treeLevel": 2, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 90, "snowBias": 1.25,
@@ -80,6 +87,7 @@
     },
     {
       "id": "cortina", "name": "Hakuba Cortina", "nameJa": "白馬コルチナ", "area": "north",
+      "season": { "open": "2026-12-12", "close": "2027-03-29", "status": "planned" },
       "top": 1402, "base": 872, "fallbackTop": 1402,
       "coords": { "top": [36.8200, 137.8450], "base": [36.8150, 137.8580] },
       "aspect": "NE", "treeLevel": 3, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 90, "snowBias": 1.35,
@@ -91,6 +99,7 @@
     },
     {
       "id": "kashimayari", "name": "Kashimayari Snow Resort", "nameJa": "鹿島槍", "area": "south",
+      "season": { "open": "2026-12-12", "close": null, "status": "planned" },
       "top": 1320, "base": 830, "fallbackTop": 1200,
       "coords": { "top": [36.5730, 137.8150], "base": [36.5800, 137.8300] },
       "aspect": "E", "treeLevel": 1, "windExposure": 3, "upperHoldGust": 60, "fullHoldGust": 85, "snowBias": 0.85,
@@ -102,6 +111,7 @@
     },
     {
       "id": "jigatake", "name": "Jiigatake Ski Resort", "nameJa": "爺ガ岳", "area": "south",
+      "season": { "open": "2026-12-11", "close": null, "status": "planned" },
       "top": 1200, "base": 940, "fallbackTop": 1200,
       "coords": { "top": [36.5600, 137.8300], "base": [36.5650, 137.8420] },
       "aspect": "E", "treeLevel": 1, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 90, "snowBias": 0.8,
@@ -113,6 +123,7 @@
     },
     {
       "id": "sanosaka", "name": "Hakuba Sanosaka", "nameJa": "白馬さのさか", "area": "south",
+      "season": { "open": "2026-12-18", "close": "2027-03-22", "status": "planned" },
       "top": 1200, "base": 740, "fallbackTop": 1200,
       "coords": { "top": [36.6320, 137.8380], "base": [36.6360, 137.8500] },
       "aspect": "E", "treeLevel": 1, "windExposure": 2, "upperHoldGust": 65, "fullHoldGust": 90, "snowBias": 0.85,

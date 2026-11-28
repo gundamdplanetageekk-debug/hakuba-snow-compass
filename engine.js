@@ -166,21 +166,36 @@
     return { id: r.id, score: Math.round(clamp(score, 0, 100)), reasons: reasons.slice(0, 4), flags: flags, holdState: holdState, weather: w, skiableVert: vert };
   }
 
+  /** null when the resort is (planned to be) operating on `date`; otherwise why not. Live running lifts always win. */
+  function seasonState(r, date, live) {
+    const s = r.season;
+    if (!s || (live && live.open > 0)) return null;
+    if (s.open && date < s.open) return { state: 'preseason', date: s.open, planned: s.status !== 'opened' };
+    if (s.close && date > s.close) return { state: 'closed', date: s.close };
+    return null;
+  }
+
   function rankResorts(norm, resorts, lifts, now) {
     const day = targetDay(now);
     // Live lift status only describes *right now*: use it for today's picks, and only once the valley is running
     // (at night or before opening every lift reads closed, which would wrongly sink every resort).
     const valleyRunning = lifts && Object.keys(lifts).some(k => lifts[k] && lifts[k].open > 0);
+    const liveAll = lifts;
     if (day.isTomorrow || !valleyRunning) lifts = null;
-    const ranked = [];
+    const ranked = [], closed = [];
     resorts.forEach(r => {
       if (!norm[r.id]) return;
       const w = summarize(norm[r.id], day.date);
       if (!w) return;
-      ranked.push(Object.assign(scoreResort(r, w, lifts && lifts[r.id]), { resort: r }));
+      const item = Object.assign(scoreResort(r, w, lifts && lifts[r.id]), { resort: r });
+      const st = seasonState(r, day.date, liveAll && liveAll[r.id]);
+      if (st) { item.season = st; closed.push(item); } else ranked.push(item);
     });
     ranked.sort((a, b) => b.score - a.score);
-    return { day: day, ranked: ranked };
+    closed.sort((a, b) => (a.season.date || '9') < (b.season.date || '9') ? -1 : 1);
+    // Off-season for the whole valley: rank everything rather than show nothing.
+    if (!ranked.length) return { day: day, ranked: closed.sort((a, b) => b.score - a.score), closed: [], offSeason: true };
+    return { day: day, ranked: ranked, closed: closed };
   }
 
   /** Aspects that receive wind-blown snow = lee of the wind (wind FROM dir loads the opposite aspects). */

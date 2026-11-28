@@ -1,0 +1,28 @@
+{
+ "updated_at": "2026-11-28T20:12:35+00:00",
+ "days": [
+  {
+   "date": "2026-11-27",
+   "views": 13,
+   "visits": 12,
+   "offer_clicks": {
+    "transfer": 1
+   }
+  },
+  {
+   "date": "2026-11-28",
+   "views": 111,
+   "visits": 70,
+   "offer_clicks": {
+    "bc-viator": 1,
+    "lesson": 1,
+    "snowmonkey": 1,
+    "stays": 1,
+    "bc-gyg": 4,
+    "guide": 3,
+    "transfer": 1,
+    "gear": 2
+   }
+  }
+ ]
+}

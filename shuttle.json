@@ -1,0 +1,889 @@
+{
+ "_meta": {
+  "version": "2026-11-27",
+  "season": "2026-27",
+  "status": "parsed",
+  "note": "Route structure and fares are from the 2025-26 season. 2026-27 timetables are picked up automatically by scripts/update_shuttle.py; until then the app shows routes and links to the official timetable.",
+  "needsReview": true,
+  "sources": [
+   {
+    "system": "hv-shuttle",
+    "url": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf",
+    "sha256": "908454d0a16e8525596cc6f7307aac9c9ecc81507881f7973b17920fb865a5d9"
+   },
+   {
+    "system": "hv-shuttle",
+    "url": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf",
+    "sha256": "5301936b55c26256ffc7c93cc57421437b24a06facdb96b72da330b97fc721a2"
+   },
+   {
+    "system": "hv-shuttle",
+    "url": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/12/2025-2026-Shuttle-Bus-Map.pdf",
+    "sha256": "af7970ca2d53c3c350a57e6cdef045cac05ecafea1430d7f02364689f49a4274"
+   },
+   {
+    "system": "hv-shuttle",
+    "url": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/12/2025-2026-Shuttle-Bus-Timetable.pdf",
+    "sha256": "944b9c0a542251e27c3ca24815a48efad1b7a99b35fe5dd99b96d58712ca2cb2"
+   },
+   {
+    "system": "goryu-47",
+    "url": "https://www.hakubagoryu.jp/wp/wp-content/uploads/2026/08/Goryu-carparking-map.pdf",
+    "sha256": "dda009137821f878c9570bbb27f580b27d256b9d18c87dbafe8bd43f9c56ef4c"
+   },
+   {
+    "system": "goryu-47",
+    "url": "https://www.hakubagoryu.jp/wp/wp-content/uploads/2026/11/8eb82039d6691f06a9c582642d645ec4.pdf",
+    "sha256": "70cd8412845291b503249177a5eef9d4aa0f47f6e542532e9504716003a3308a"
+   }
+  ],
+  "updated_at": "2026-11-27T11:30:36+00:00",
+  "changed": [
+   "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf",
+   "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf",
+   "https://www.hakubavalley.com/cms/wp-content/uploads/2025/12/2025-2026-Shuttle-Bus-Map.pdf",
+   "https://www.hakubavalley.com/cms/wp-content/uploads/2025/12/2025-2026-Shuttle-Bus-Timetable.pdf",
+   "https://www.hakubagoryu.jp/wp/wp-content/uploads/2026/08/Goryu-carparking-map.pdf",
+   "https://www.hakubagoryu.jp/wp/wp-content/uploads/2026/11/8eb82039d6691f06a9c582642d645ec4.pdf"
+  ]
+ },
+ "passNote": "A Hakuba Valley All-Mountain pass (season or day) lets you ride the Hakuba Valley Shuttle free on the day you ski.",
+ "systems": [
+  {
+   "id": "hv-shuttle",
+   "name": "Hakuba Valley Shuttle",
+   "kind": "inter-resort",
+   "connects": [
+    "cortina",
+    "norikura",
+    "tsugaike",
+    "iwatake",
+    "happo",
+    "hakuba47",
+    "goryu",
+    "sanosaka",
+    "kashimayari",
+    "jigatake"
+   ],
+   "fare": "¥800 adult / ¥400 child · online ticket only, no cash",
+   "freeWithPass": true,
+   "lastSeasonPeriod": "2025-26: mid-Dec to late Mar (timetable changes in Dec and mid-Mar)",
+   "tips": [
+    "Buses fill up on powder days — once full they skip stops.",
+    "Mornings mostly run toward the resorts, afternoons back from them."
+   ],
+   "url": "https://www.hakubavalley.com/en/access_en/shuttlebus_en/"
+  },
+  {
+   "id": "night-bus",
+   "name": "Hakuba Night Bus",
+   "kind": "evening",
+   "connects": [],
+   "fare": "See official page",
+   "freeWithPass": false,
+   "lastSeasonPeriod": "Peak season only; the loop ended in early March in 2024-25",
+   "tips": [
+    "Links accommodation areas with restaurants and bars after skiing."
+   ],
+   "url": "https://www.hakubavalley.com/en/access_en/shuttlebus_en/"
+  },
+  {
+   "id": "gurutto",
+   "name": "Gurutto Bus (Omachi ⇄ Hakuba)",
+   "kind": "regional",
+   "connects": [
+    "jigatake",
+    "kashimayari",
+    "goryu",
+    "happo",
+    "iwatake"
+   ],
+   "fare": "Free for everyone · no reservation",
+   "freeWithPass": false,
+   "lastSeasonPeriod": "2025-26: 27 Dec – 23 Feb",
+   "tips": [
+    "About 30 min from Omachi Onsenkyo to the Hakuba ski area."
+   ],
+   "url": "https://kanko-omachi.gr.jp/en/gurutto-bus"
+  },
+  {
+   "id": "goryu-47",
+   "name": "Goryu & Hakuba47 Free Shuttle + Triangle Bus",
+   "kind": "resort",
+   "connects": [
+    "goryu",
+    "hakuba47"
+   ],
+   "fare": "Free for everyone",
+   "freeWithPass": false,
+   "lastSeasonPeriod": "2025-26: 13 Dec – 31 Mar",
+   "tips": [
+    "Triangle Bus links Goryu, Iimori and Hakuba47 bases."
+   ],
+   "url": "https://hakubaescal.com/winter-en/access/"
+  },
+  {
+   "id": "happo-iwatake-tsugaike",
+   "name": "Happo · Iwatake · Tsugaike Free Shuttle",
+   "kind": "resort",
+   "connects": [
+    "happo",
+    "iwatake",
+    "tsugaike"
+   ],
+   "fare": "Free for everyone",
+   "freeWithPass": false,
+   "lastSeasonPeriod": "Winter season",
+   "tips": [
+    "Hub: Hakuba Happo Bus Terminal."
+   ],
+   "url": "https://www.hakubavalley.com/en/access_en/shuttlebus_en/"
+  }
+ ],
+ "timetable": [
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Cortina Snow Resort",
+   "times": [
+    "07:30",
+    "09:00",
+    "10:00",
+    "11:00",
+    "13:00",
+    "14:45",
+    "16:00",
+    "17:00"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Satomi",
+   "times": [
+    "07:38",
+    "09:08",
+    "10:08",
+    "11:08",
+    "13:08",
+    "14:53",
+    "16:08",
+    "17:08"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Norikura Onsen Snow Resort",
+   "times": [
+    "07:41",
+    "09:11",
+    "10:11",
+    "11:11",
+    "13:11",
+    "14:56",
+    "16:11",
+    "17:11"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Tsugaike Mountain Resort (Gondola)",
+   "times": [
+    "07:48",
+    "09:18",
+    "10:18",
+    "11:18",
+    "13:18",
+    "15:03",
+    "16:18",
+    "17:18"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Ochikura Jizo-mae",
+   "times": [
+    "07:54",
+    "09:24",
+    "10:24",
+    "11:24",
+    "13:24",
+    "15:09",
+    "16:24",
+    "17:24"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Iwatake Snow Field",
+   "times": [
+    "08:03",
+    "09:33",
+    "10:33",
+    "11:33",
+    "13:33",
+    "15:18",
+    "16:33",
+    "17:33"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "JR Hakuba Station",
+   "times": [
+    "09:42",
+    "10:42",
+    "11:42",
+    "13:42",
+    "16:42",
+    "17:42"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Happō Bus Terminal",
+   "times": [
+    "08:11",
+    "09:48",
+    "10:48",
+    "11:48",
+    "13:48",
+    "15:26",
+    "16:48",
+    "17:48"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Happo-one Snow Resort (Nakiyama Slope)",
+   "times": [
+    "08:16",
+    "09:53",
+    "10:53",
+    "11:53",
+    "13:53",
+    "15:31",
+    "16:53",
+    "17:53"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Echoland (Spicy）",
+   "times": [
+    "08:24",
+    "10:01",
+    "11:01",
+    "12:01",
+    "14:01",
+    "15:39",
+    "17:01",
+    "18:01"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba 47 Winter Sports Park",
+   "times": [
+    "08:39",
+    "10:16",
+    "11:16",
+    "12:16",
+    "14:16",
+    "15:54",
+    "17:16",
+    "18:16"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "ABLE Hakuba Goryu Snow Resort Escal Plaza",
+   "times": [
+    "08:46",
+    "10:23",
+    "11:23",
+    "12:23",
+    "14:23",
+    "16:01",
+    "17:23",
+    "18:23"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba 47 Winter Sports Park",
+   "times": [
+    "06:45",
+    "07:30",
+    "08:40",
+    "10:00",
+    "12:00",
+    "13:00",
+    "14:30",
+    "16:00"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "ABLE Hakuba Goryu Snow Resort Escal Plaza",
+   "times": [
+    "06:52",
+    "07:37",
+    "08:47",
+    "10:07",
+    "12:07",
+    "13:07",
+    "14:37",
+    "16:07"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Echoland (Spicy）",
+   "times": [
+    "07:12",
+    "07:57",
+    "09:07",
+    "10:27",
+    "12:27",
+    "13:27",
+    "14:57",
+    "16:27"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Happo-one Snow Resort (Nakiyama Slope)",
+   "times": [
+    "07:20",
+    "08:05",
+    "09:15",
+    "10:35",
+    "12:35",
+    "13:35",
+    "15:05",
+    "16:35"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Happō Bus Terminal",
+   "times": [
+    "07:25",
+    "08:10",
+    "09:20",
+    "10:40",
+    "12:40",
+    "13:40",
+    "15:10",
+    "16:40"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "JR Hakuba Station",
+   "times": [
+    "10:46",
+    "12:46",
+    "13:46",
+    "16:46"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Iwatake Snow Field",
+   "times": [
+    "07:33",
+    "08:18",
+    "09:28",
+    "10:55",
+    "12:55",
+    "13:55",
+    "15:18",
+    "16:55"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Ochikura Jizo-mae",
+   "times": [
+    "07:42",
+    "08:27",
+    "09:37",
+    "11:04",
+    "13:04",
+    "14:04",
+    "15:27",
+    "17:04"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Tsugaike Mountain Resort (Gondola)",
+   "times": [
+    "07:48",
+    "08:33",
+    "09:43",
+    "11:10",
+    "13:10",
+    "14:10",
+    "15:33",
+    "17:10"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Norikura Onsen Snow Resort",
+   "times": [
+    "07:55",
+    "08:40",
+    "09:50",
+    "11:17",
+    "13:17",
+    "14:17",
+    "15:39",
+    "17:17"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Satomi",
+   "times": [
+    "07:58",
+    "08:43",
+    "09:53",
+    "11:20",
+    "13:20",
+    "14:20",
+    "15:45",
+    "17:20"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Cortina Snow Resort",
+   "times": [
+    "08:06",
+    "08:51",
+    "10:01",
+    "11:28",
+    "13:28",
+    "14:28",
+    "15:51",
+    "17:28"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Low-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Cortina Snow Resort",
+   "times": [
+    "07:30",
+    "09:00",
+    "10:00",
+    "11:00",
+    "13:00",
+    "14:00",
+    "14:45",
+    "16:00",
+    "17:00"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Satomi",
+   "times": [
+    "07:38",
+    "09:08",
+    "10:08",
+    "11:08",
+    "13:08",
+    "14:08",
+    "14:53",
+    "16:08",
+    "17:08"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Norikura Onsen Snow Resort",
+   "times": [
+    "07:41",
+    "09:11",
+    "10:11",
+    "11:11",
+    "13:11",
+    "14:11",
+    "14:56",
+    "16:11",
+    "17:11"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Tsugaike Mountain Resort (Gondola)",
+   "times": [
+    "07:48",
+    "09:18",
+    "10:18",
+    "11:18",
+    "13:18",
+    "14:18",
+    "15:03",
+    "16:18",
+    "17:18"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Ochikura Jizo-mae",
+   "times": [
+    "07:54",
+    "09:24",
+    "10:24",
+    "11:24",
+    "13:24",
+    "14:24",
+    "15:09",
+    "16:24",
+    "17:24"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Iwatake Snow Field",
+   "times": [
+    "08:03",
+    "09:33",
+    "10:33",
+    "11:33",
+    "13:33",
+    "14:33",
+    "15:18",
+    "16:33",
+    "17:33"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "JR Hakuba Station",
+   "times": [
+    "09:42",
+    "10:42",
+    "11:42",
+    "13:42",
+    "14:42",
+    "16:42",
+    "17:42"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Happō Bus Terminal",
+   "times": [
+    "07:31",
+    "08:11",
+    "09:48",
+    "10:48",
+    "11:48",
+    "13:48",
+    "14:48",
+    "15:26",
+    "16:48",
+    "17:48"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Happo-one Snow Resort (Nakiyama Slope)",
+   "times": [
+    "07:36",
+    "08:16",
+    "09:53",
+    "10:53",
+    "11:53",
+    "13:53",
+    "14:53",
+    "15:31",
+    "16:53",
+    "17:53"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Echoland (Spicy）",
+   "times": [
+    "07:44",
+    "08:24",
+    "10:01",
+    "11:01",
+    "12:01",
+    "14:01",
+    "15:01",
+    "15:39",
+    "17:01",
+    "18:01"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba 47 Winter Sports Park",
+   "times": [
+    "07:59",
+    "08:39",
+    "10:16",
+    "11:16",
+    "12:16",
+    "14:16",
+    "15:16",
+    "15:54",
+    "17:16",
+    "18:16"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "ABLE Hakuba Goryu Snow Resort Escal Plaza",
+   "times": [
+    "08:06",
+    "08:46",
+    "10:23",
+    "11:23",
+    "12:23",
+    "14:23",
+    "15:23",
+    "16:01",
+    "17:23",
+    "18:23"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba 47 Winter Sports Park",
+   "times": [
+    "06:45",
+    "07:30",
+    "08:40",
+    "09:15",
+    "10:00",
+    "12:00",
+    "13:00",
+    "14:30",
+    "16:00",
+    "16:30"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "ABLE Hakuba Goryu Snow Resort Escal Plaza",
+   "times": [
+    "06:52",
+    "07:37",
+    "08:47",
+    "09:22",
+    "10:07",
+    "12:07",
+    "13:07",
+    "14:37",
+    "16:07",
+    "16:37"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Echoland (Spicy）",
+   "times": [
+    "07:12",
+    "07:57",
+    "09:07",
+    "09:42",
+    "10:27",
+    "12:27",
+    "13:27",
+    "14:57",
+    "16:27",
+    "16:57"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Happo-one Snow Resort (Nakiyama Slope)",
+   "times": [
+    "07:20",
+    "08:05",
+    "09:15",
+    "09:50",
+    "10:35",
+    "12:35",
+    "13:35",
+    "15:05",
+    "16:35",
+    "17:05"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Happō Bus Terminal",
+   "times": [
+    "07:25",
+    "08:10",
+    "09:20",
+    "09:55",
+    "10:40",
+    "12:40",
+    "13:40",
+    "15:10",
+    "16:40",
+    "17:10"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "JR Hakuba Station",
+   "times": [
+    "10:46",
+    "12:46",
+    "13:46",
+    "16:46"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Iwatake Snow Field",
+   "times": [
+    "07:33",
+    "08:18",
+    "09:28",
+    "10:03",
+    "10:55",
+    "12:55",
+    "13:55",
+    "15:18",
+    "16:55",
+    "17:18"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Ochikura Jizo-mae",
+   "times": [
+    "07:42",
+    "08:27",
+    "09:37",
+    "10:12",
+    "11:04",
+    "13:04",
+    "14:04",
+    "15:27",
+    "17:04",
+    "17:27"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Tsugaike Mountain Resort (Gondola)",
+   "times": [
+    "07:48",
+    "08:33",
+    "09:43",
+    "10:18",
+    "11:10",
+    "13:10",
+    "14:10",
+    "15:33",
+    "17:10",
+    "17:33"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Norikura Onsen Snow Resort",
+   "times": [
+    "07:55",
+    "08:40",
+    "09:50",
+    "10:25",
+    "11:17",
+    "13:17",
+    "14:17",
+    "15:39",
+    "17:17"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Satomi",
+   "times": [
+    "07:58",
+    "08:43",
+    "09:53",
+    "10:28",
+    "11:20",
+    "13:20",
+    "14:20",
+    "15:45",
+    "17:20"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  },
+  {
+   "system": "hv-shuttle",
+   "stop": "Hakuba Cortina Snow Resort",
+   "times": [
+    "08:06",
+    "08:51",
+    "10:01",
+    "10:36",
+    "11:28",
+    "13:28",
+    "14:28",
+    "15:51",
+    "17:28"
+   ],
+   "source": "https://www.hakubavalley.com/cms/wp-content/uploads/2025/11/2025-2026-Shoulder-season.pdf"
+  }
+ ]
+}

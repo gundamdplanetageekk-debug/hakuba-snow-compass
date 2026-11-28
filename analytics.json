@@ -1,0 +1,178 @@
+{
+ "fetched_at": "2026-11-28T20:12:35+00:00",
+ "source": "cloudflare-web-analytics",
+ "host": "hakuba-snow-compass.pages.dev",
+ "window_days": 7,
+ "totals": {
+  "views": 124,
+  "visits": 82,
+  "offer_clicks": 15
+ },
+ "by_day": [
+  {
+   "key": "2026-11-27",
+   "views": 13,
+   "visits": 12
+  },
+  {
+   "key": "2026-11-28",
+   "views": 111,
+   "visits": 70
+  }
+ ],
+ "top_paths": [
+  {
+   "key": "/",
+   "views": 104,
+   "visits": 82
+  },
+  {
+   "key": "/guides/hakuba-rest-day",
+   "views": 2,
+   "visits": 0
+  },
+  {
+   "key": "/about",
+   "views": 2,
+   "visits": 0
+  },
+  {
+   "key": "/contact",
+   "views": 1,
+   "visits": 0
+  }
+ ],
+ "top_referrers": [
+  {
+   "key": "hakuba-snow-compass.pages.dev",
+   "views": 42,
+   "visits": 0
+  },
+  {
+   "key": "l.threads.com",
+   "views": 21,
+   "visits": 21
+  },
+  {
+   "key": "(none)",
+   "views": 20,
+   "visits": 20
+  },
+  {
+   "key": "l.instagram.com",
+   "views": 16,
+   "visits": 16
+  },
+  {
+   "key": "t.co",
+   "views": 13,
+   "visits": 13
+  },
+  {
+   "key": "www.facebook.com",
+   "views": 6,
+   "visits": 6
+  },
+  {
+   "key": "www.google.com",
+   "views": 6,
+   "visits": 6
+  }
+ ],
+ "top_countries": [
+  {
+   "key": "JP",
+   "views": 107,
+   "visits": 66
+  },
+  {
+   "key": "US",
+   "views": 11,
+   "visits": 11
+  },
+  {
+   "key": "TW",
+   "views": 3,
+   "visits": 3
+  },
+  {
+   "key": "AU",
+   "views": 2,
+   "visits": 1
+  },
+  {
+   "key": "FR",
+   "views": 1,
+   "visits": 1
+  }
+ ],
+ "devices": [
+  {
+   "key": "mobile",
+   "views": 94,
+   "visits": 59
+  },
+  {
+   "key": "desktop",
+   "views": 30,
+   "visits": 23
+  }
+ ],
+ "offer_clicks": {
+  "transfer": 2,
+  "bc-viator": 1,
+  "lesson": 1,
+  "snowmonkey": 1,
+  "stays": 1,
+  "bc-gyg": 4,
+  "guide": 3,
+  "gear": 2
+ },
+ "offer_clicks_by_day": [
+  {
+   "date": "2026-11-27",
+   "offer": "transfer",
+   "clicks": 1
+  },
+  {
+   "date": "2026-11-28",
+   "offer": "bc-viator",
+   "clicks": 1
+  },
+  {
+   "date": "2026-11-28",
+   "offer": "lesson",
+   "clicks": 1
+  },
+  {
+   "date": "2026-11-28",
+   "offer": "snowmonkey",
+   "clicks": 1
+  },
+  {
+   "date": "2026-11-28",
+   "offer": "stays",
+   "clicks": 1
+  },
+  {
+   "date": "2026-11-28",
+   "offer": "bc-gyg",
+   "clicks": 4
+  },
+  {
+   "date": "2026-11-28",
+   "offer": "guide",
+   "clicks": 3
+  },
+  {
+   "date": "2026-11-28",
+   "offer": "transfer",
+   "clicks": 1
+  },
+  {
+   "date": "2026-11-28",
+   "offer": "gear",
+   "clicks": 2
+  }
+ ]
+}

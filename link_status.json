@@ -1,0 +1,40 @@
+{
+ "checked_at": "2026-11-28T20:13:29.757689+00:00",
+ "links": [
+  {
+   "label": "JAN Avalanche Bulletin (Hakuba)",
+   "url": "https://nadare.jp/",
+   "ok": true,
+   "status": 200,
+   "consecutive_failures": 0
+  },
+  {
+   "label": "Hakuba Valley Safety Tips",
+   "url": "https://www.hakubavalley.com/en/safetytips_en",
+   "ok": false,
+   "error": "URLError: <urlopen error timed out>",
+   "consecutive_failures": 1
+  },
+  {
+   "label": "Compass \u2014 online itinerary (JP/EN)",
+   "url": "https://www.mt-compass.com/",
+   "ok": true,
+   "status": 200,
+   "consecutive_failures": 0
+  },
+  {
+   "label": "Nagano Prefecture: itinerary form (English)",
+   "url": "https://www.pref.nagano.lg.jp/kankoki/smartphone/trekking.html",
+   "ok": true,
+   "status": 200,
+   "consecutive_failures": 0
+  },
+  {
+   "label": "Nagano Police: Avoiding danger in the BC (PDF)",
+   "url": "https://www.pref.nagano.lg.jp/kankoki/smartphone/documents/backcountry-e.pdf",
+   "ok": true,
+   "status": 200,
+   "consecutive_failures": 0
+  }
+ ]
+}

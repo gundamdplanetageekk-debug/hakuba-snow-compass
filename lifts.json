@@ -1,0 +1,1822 @@
+{
+ "fetched_at": "2026-11-28T07:27:41+00:00",
+ "source": "https://www.hakubavalley.com/en/weather_en/",
+ "resorts": {
+  "cortina": {
+   "url": "https://www.hakubavalley.com/en/weather_en/detail_cortina_en/",
+   "lifts": [
+    {
+     "name": "Area / Item",
+     "status": "unknown",
+     "raw": "Weather",
+     "remarks": "Temperature(℃)"
+    },
+    {
+     "name": "白馬コルチナスキー場",
+     "status": "unknown",
+     "raw": "Rain",
+     "remarks": "9"
+    },
+    {
+     "name": "Cortina 1st Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Cortina 2nd Quad Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Cortina 3rd Quad Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Cortina 4th Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Cortina 5th Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Cortina 6th Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "5 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.otr.pxc.jp/~cortina-ss/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "3 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.evergreen-hakuba.com/jp/winter/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Chinese / Other Language",
+     "remarks": ""
+    },
+    {
+     "name": "Note",
+     "status": "unknown",
+     "raw": "-Supported languages: Chinese, Cantonese",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://jcosa.net/",
+     "remarks": ""
+    }
+   ],
+   "open": 0,
+   "total": 6
+  },
+  "goryu": {
+   "url": "https://www.hakubavalley.com/en/weather_en/detail_goryu_en/",
+   "lifts": [
+    {
+     "name": "Area / Item",
+     "status": "unknown",
+     "raw": "Weather",
+     "remarks": "Temperature(℃)"
+    },
+    {
+     "name": "アルプス平",
+     "status": "unknown",
+     "raw": "Rain",
+     "remarks": "3"
+    },
+    {
+     "name": "Goryu Express",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Alps 1st Chair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Alps 3rd Chair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Alps 2nd・4th Chair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Toomi Sky Four Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Toomi Sky Four Lift（Sunrise Ski）",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "Sunrise Ski has ended for the 2026 season."
+    },
+    {
+     "name": "Toomi Sky Four Lift（Night Ski）",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "Night Ski has ended for the 2026 season."
+    },
+    {
+     "name": "Toomi 1st Chair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Tomi 2nd Chair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Tomi 2nd Chair Lift（Night Ski）",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "Night Ski has ended for the 2026 season."
+    },
+    {
+     "name": "ミルキーフォーリフト",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "いいもり第1高速ペアリフト",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "いいもり第6ペアリフト",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "LAND ROVER コスモフォーリフト",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "4 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "http://www.s-goryu.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English / Chinese / Other Language",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "3 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Note",
+     "status": "unknown",
+     "raw": "-Supported languages: English, Chinese, French, Spanish -Ski private lessons: 3 years old and up -Ski group lessons: 5 years old and up -Snowboarding private lessons: 5 years old and up -Snowboarding group lessons: 7 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.hakubasnowsports.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "http://hakubagoryu-snowboard.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "Elementary school students and above",
+     "remarks": ""
+    },
+    {
+     "name": "Note",
+     "status": "unknown",
+     "raw": "*Applicable to those who can ride lifts and skis alone.",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://hakuba-ski.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Chinese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "3 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Note",
+     "status": "unknown",
+     "raw": "-Ski lessons: 3 years old and up *One-on-one lessons are recommended for ages 3 to 6. -Snowboarding lessons: 6 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://toomisnow.com/",
+     "remarks": ""
+    }
+   ],
+   "open": 0,
+   "total": 14
+  },
+  "hakuba47": {
+   "url": "https://www.hakubavalley.com/en/weather_en/detail_hakuba47_en/",
+   "lifts": [
+    {
+     "name": "Area / Item",
+     "status": "unknown",
+     "raw": "Weather",
+     "remarks": "Temperature(℃)"
+    },
+    {
+     "name": "Top(1450)",
+     "status": "unknown",
+     "raw": "Rain",
+     "remarks": "4"
+    },
+    {
+     "name": "Gondola Line-8",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "Operations will begin on November 27."
+    },
+    {
+     "name": "Pair Line-A・B",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Quad Lift Line-C",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "(8:40am On time) Begin operation when the necessary checks have been completed."
+    },
+    {
+     "name": "Pair Lift LineD",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "Runs when Gondola Line-8 is suspended."
+    },
+    {
+     "name": "Pair Lift LineE (High-speed)",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "(8:50am On time) Begin operation when the necessary checks have been completed."
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "4 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.hakuba47.co.jp/winter/lesson_rental/school/skiacademy/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese / English",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "4 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://47snow.net/index.php/english",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "http://www.little-adventure.co.jp/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English / Other Language",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://skijpn.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English / Other Language",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://hakubaskiconcierge.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "Elementary school students and above",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://hakuba.lion-adventure.com/activity/shortski/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese / English",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://jps.base.ec/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "http://freeskiheadz.com/",
+     "remarks": ""
+    }
+   ],
+   "open": 0,
+   "total": 5
+  },
+  "happo": {
+   "url": "https://www.hakubavalley.com/en/weather_en/detail_happo_en/",
+   "lifts": [
+    {
+     "name": "Area / Item",
+     "status": "unknown",
+     "raw": "Weather",
+     "remarks": "Temperature(℃)"
+    },
+    {
+     "name": "うさぎ平",
+     "status": "unknown",
+     "raw": "Rain",
+     "remarks": "6"
+    },
+    {
+     "name": "Adam Gondola",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Panorama",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Kokusai 3",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Alpen Quad",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Kurobishi Quad",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Kurobishi 3",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Skyline 2",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Happo Riesen Quad",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Grat Quad",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Usagidaira",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Kokusai 1",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Nakiyama 3",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Nakiyama 2",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Shirakaba 1",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Shirakaba 2",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Sakka Kitaone Quad",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Kitaone 3",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Sakka 3",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Sakka 2",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese / English / Chinese / Other Language",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "3 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Note",
+     "status": "unknown",
+     "raw": "-Supported languages: Japanese, English, Chinese, French ※English, Chinese, and French are available only in private lessons. Group lessons are offered only in Japanese. -Ski private lessons: 3 years old and up -Ski group lessons: 4 years old and up -Snowboarding private lessons: 8 years old and up *Snowboarding group lessons are not available.",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.happo-ski.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English / Chinese / Other Language",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "3 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Note",
+     "status": "unknown",
+     "raw": "-Supported languages: English, Chinese, German, French, Spanish, Swedish, Norwegian, Portuguese, Russian, Ukrainian, Danish, Dutch, Italian, Finnish, Indonesian, Tagalog Polish -Snowboarding group lessons: 7 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.evergreen-skischool.com/jp/",
+     "remarks": ""
+    }
+   ],
+   "open": 0,
+   "total": 19
+  },
+  "iwatake": {
+   "url": "https://www.hakubavalley.com/en/weather_en/detail_iwatake_en/",
+   "lifts": [
+    {
+     "name": "Area / Item",
+     "status": "unknown",
+     "raw": "Weather",
+     "remarks": "Temperature(℃)"
+    },
+    {
+     "name": "",
+     "status": "unknown",
+     "raw": "",
+     "remarks": ""
+    },
+    {
+     "name": "View2",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "3sen North",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "4sen East",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "5sen South",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Sawa",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Gondla Lift “Noah”",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Paradise Triple",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Kamo 1",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Chuou Kousoku",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Rai Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "http://www.iwatakeskischool.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.hakubaiwatake-sbs.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.evergreen-skischool.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English / Chinese / Other Language",
+     "remarks": ""
+    },
+    {
+     "name": "Note",
+     "status": "unknown",
+     "raw": "-Supported languages: Chinese, Cantonese, English",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.csssjp.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://hakubaskiconcierge.com/",
+     "remarks": ""
+    }
+   ],
+   "open": 0,
+   "total": 10
+  },
+  "jigatake": {
+   "url": "https://www.hakubavalley.com/en/weather_en/detail_jiigatake_en/",
+   "lifts": [
+    {
+     "name": "Area / Item",
+     "status": "unknown",
+     "raw": "Weather",
+     "remarks": "Temperature(℃)"
+    },
+    {
+     "name": "山麓",
+     "status": "unknown",
+     "raw": "Rain",
+     "remarks": "7"
+    },
+    {
+     "name": "1st Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "2nd Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "3rd Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "4th Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "Out of service."
+    },
+    {
+     "name": "TOROIKA",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "No service on weekdays"
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "4 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://jiigatake.com/school/#saj",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese / English / Chinese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "4 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://skade-gski.com/#",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese / English",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "Elementary school students and above",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://kis-snowboardschool.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "6 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://the-720-clinic.jimdosite.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Chinese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "3 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Note",
+     "status": "unknown",
+     "raw": "-Ski lessons: 3 years old and up -Snowboarding lessons: 6 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.noyukiacademy.com/",
+     "remarks": ""
+    }
+   ],
+   "open": 0,
+   "total": 5
+  },
+  "kashimayari": {
+   "url": "https://www.hakubavalley.com/en/weather_en/detail_kashimayari_en/",
+   "lifts": [
+    {
+     "name": "Area / Item",
+     "status": "unknown",
+     "raw": "Weather",
+     "remarks": "Temperature(℃)"
+    },
+    {
+     "name": "",
+     "status": "unknown",
+     "raw": "",
+     "remarks": ""
+    },
+    {
+     "name": "1st Quad Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "[Weekdays] 9:00~16:00"
+    },
+    {
+     "name": "2nd Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "[Weekdays] 8:30~16:00"
+    },
+    {
+     "name": "5th Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "[Weekdays]9:00~16:00"
+    },
+    {
+     "name": "6th Quad Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "[Weekday] 8:30~16:00"
+    },
+    {
+     "name": "7th Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": "[Weekdays] 9:00~15:30"
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese / English / Chinese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "2 years old",
+     "remarks": ""
+    },
+    {
+     "name": "Note",
+     "status": "unknown",
+     "raw": "Lessons: Official Ambassador Lessons available Languages: Fully fluent in English, Cantonese, and Mandarin",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://granparadisosnowacademy.net/top-en",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "4 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Note",
+     "status": "unknown",
+     "raw": "*Group lessons have restrictions on number of people, etc.",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "http://kashimayari-ski-school.com/index.html",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese / English",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "Elementary school students and above",
+     "remarks": ""
+    },
+    {
+     "name": "Note",
+     "status": "unknown",
+     "raw": "*Group lessons have restrictions on number of people, etc.",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://azpro-snowboarding.com/",
+     "remarks": ""
+    }
+   ],
+   "open": 0,
+   "total": 5
+  },
+  "norikura": {
+   "url": "https://www.hakubavalley.com/en/weather_en/detail_norikura_en/",
+   "lifts": [
+    {
+     "name": "Area / Item",
+     "status": "unknown",
+     "raw": "Weather",
+     "remarks": "Temperature(℃)"
+    },
+    {
+     "name": "白馬乗鞍温泉スキー場",
+     "status": "unknown",
+     "raw": "Rain",
+     "remarks": "5"
+    },
+    {
+     "name": "Alps No.1 Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Alps No.3 High speed Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Alps No.4 Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Alps No.5 High speed Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Alps No.6 Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Alps No.8 Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Alps No.9 Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Alps No.10 Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Alps No.11 Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "3 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://hakubanorikuraskischool.weebly.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "5 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.hakunori.com/snowboardschool/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English / Chinese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "5 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://frontierhakuba.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "5 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://nbsjapan.com/hakuba/private-lessons/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Chinese",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.dragontours-japan.com/en",
+     "remarks": ""
+    }
+   ],
+   "open": 0,
+   "total": 9
+  },
+  "sanosaka": {
+   "url": "https://www.hakubavalley.com/en/weather_en/detail_sanosaka_en/",
+   "lifts": [
+    {
+     "name": "Area / Item",
+     "status": "unknown",
+     "raw": "Weather",
+     "remarks": "Temperature(℃)"
+    },
+    {
+     "name": "WhiteResort白馬さのさか",
+     "status": "unknown",
+     "raw": "Rain",
+     "remarks": "6"
+    },
+    {
+     "name": "2nd Quad Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "3rd Quad Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "5th Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "6th Pair Lift",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English / Chinese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "4 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.jadehotelgroup.com/jadeskischool",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "13 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://freestyleskisanosaka.wixsite.com/school",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese / English",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "6 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://azpro-snowboarding.com/az-gate-members",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "6 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://hakuba-school.jp/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese / English",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "Elementary school students and above",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://lit.link/snowm?fbclid=PAZXh0bgNhZW0CMTEAAabZ7VqqZa5SqrGfHVZRwhEMXL0dOgH9sfxE7dvu3NRpiWUkbNtznlsISTw_aem_iCeb3j2mAYyPWRTEih4oVw",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese / English",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "3 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://schneeberg-ss.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English / Chinese",
+     "remarks": ""
+    },
+    {
+     "name": "Minimum age",
+     "status": "unknown",
+     "raw": "3 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Note",
+     "status": "unknown",
+     "raw": "-Ski lessons: 3 years old and up -Snowboarding lessons: 7 years old and up",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://hakubahafuna.com/",
+     "remarks": ""
+    }
+   ],
+   "open": 0,
+   "total": 4
+  },
+  "tsugaike": {
+   "url": "https://www.hakubavalley.com/en/weather_en/detail_tsugaike_en/",
+   "lifts": [
+    {
+     "name": "Area / Item",
+     "status": "unknown",
+     "raw": "Weather",
+     "remarks": "Temperature(℃)"
+    },
+    {
+     "name": "栂の森",
+     "status": "unknown",
+     "raw": "Rain",
+     "remarks": "8"
+    },
+    {
+     "name": "Tsugaike Ropeway",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "EVE Gondola",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "EVE Gondola（Sta.Shirakaba-Sta.Tsuga-no-mori）",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Tsuga No.2 Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Tsuga No.1 Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Han-no-ki High Speed Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "T3",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Han-no-ki No.1 Quad",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Shirakaba Quad",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Maruyama No.1 Quad",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Karamatsu High Speed Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Champion Quad",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Tsugaike No.1 Pair",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Tsugaike Central Triple",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Kane-no-naru-oka Skyliner Ⅱ",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Kane-no-naru-oka Skyliner Ⅲ",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Kane-no-naru-oka Romance",
+     "status": "closed",
+     "raw": "CLOSED",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "Japanese",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.tsugaike-ss.com/",
+     "remarks": ""
+    },
+    {
+     "name": "Lessons",
+     "status": "unknown",
+     "raw": "Ski / Snowboard / Private Lesson / Group Lesson",
+     "remarks": ""
+    },
+    {
+     "name": "Languages",
+     "status": "unknown",
+     "raw": "English",
+     "remarks": ""
+    },
+    {
+     "name": "Website",
+     "status": "unknown",
+     "raw": "https://www.evergreen-skischool.com/",
+     "remarks": ""
+    }
+   ],
+   "open": 0,
+   "total": 17
+  }
+ }
+}
